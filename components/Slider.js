@@ -20,7 +20,11 @@ export default class Slider extends Component {
         "https://s3.us-east-2.amazonaws.com/dzuz14/thumbnails/tree-of-life.jpg"
       ],
       currentIndex: 0,
-      translateValue: 0
+      translateValue: 0,
+      top: props.top,
+      left: props.left,
+      width: props.width,
+      height: props.height
     }
   }
 
@@ -64,13 +68,28 @@ export default class Slider extends Component {
     return document.querySelector('.slide').clientHeight
  }
 
+ //if we dont set the size of the items, the default size of slider is size of the slide
+ componentDidMount = () => {
+   if (this.state.height === 0) {
+    this.setState(prevState => ({
+      height: this.slideHeight()
+    }))
+  }
+
+  if (this.state.width === 0) {
+    this.setState(prevState => ({
+      width: this.slideWidth()
+    }))
+   }
+ }
   render() {
     return (
       <div className="slider" style={{
           position: 'absolute',
-          top: 50,
-          width: 640,
-          height: 400,
+          top: this.state.top,
+          left: this.state.left,
+          width: this.state.width,
+          height: this.state.height,
           overflow: 'hidden'
       }}>
 
@@ -93,10 +112,18 @@ export default class Slider extends Component {
              
         <LeftArrow
          goToPrevSlide={this.goToPrevSlide}
+         top = {this.state.height/2}
+         left = {this.state.width/25}
+         size = {this.state.height / 10}
+
         />
 
         <RightArrow
          goToNextSlide={this.goToNextSlide}
+         top = {this.state.height/2}
+         right = {this.state.width - this.state.width/25}
+         size = {this.state.height / 10}
+
         />
         </div>
       </div>

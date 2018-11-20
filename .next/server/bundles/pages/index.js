@@ -136,25 +136,25 @@ var _jsxFileName = "C:\\Users\\mike spad\\Documents\\CSE 305\\SBUdb\\SBUdb\\comp
 
 
 var styles = {
-  position: "absolute",
-  top: 200,
-  left: 25
+  position: "absolute"
 };
 
 var LeftArrow = function LeftArrow(props) {
+  styles.top = props.top;
+  styles.left = props.left;
   return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", {
     className: "backArrow",
     onClick: props.goToPrevSlide,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 11
+      lineNumber: 12
     }
   }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_react_icons_fa__["FaArrowAltCircleLeft"], {
-    size: "50px",
+    size: props.size,
     style: styles,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 12
+      lineNumber: 13
     }
   }));
 };
@@ -175,12 +175,12 @@ var _jsxFileName = "C:\\Users\\mike spad\\Documents\\CSE 305\\SBUdb\\SBUdb\\comp
 
 
 var styles = {
-  position: "absolute",
-  top: 200,
-  left: 575
+  position: "absolute"
 };
 
 var LeftArrow = function LeftArrow(props) {
+  styles.top = props.top;
+  styles.left = props.right - props.size;
   return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", {
     className: "forwardArrow",
     onClick: props.goToNextSlide,
@@ -189,7 +189,7 @@ var LeftArrow = function LeftArrow(props) {
       lineNumber: 11
     }
   }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_react_icons_fa__["FaArrowAltCircleRight"], {
-    size: "50px",
+    size: props.size,
     style: styles,
     __source: {
       fileName: _jsxFileName,
@@ -345,10 +345,36 @@ function (_Component) {
         return document.querySelector('.slide').clientHeight;
       }
     });
+    Object.defineProperty(_assertThisInitialized(_this), "componentDidMount", {
+      configurable: true,
+      enumerable: true,
+      writable: true,
+      value: function value() {
+        if (_this.state.height === 0) {
+          _this.setState(function (prevState) {
+            return {
+              height: _this.slideHeight()
+            };
+          });
+        }
+
+        if (_this.state.width === 0) {
+          _this.setState(function (prevState) {
+            return {
+              width: _this.slideWidth()
+            };
+          });
+        }
+      }
+    });
     _this.state = {
       images: ["https://s3.us-east-2.amazonaws.com/dzuz14/thumbnails/aurora.jpg", "https://s3.us-east-2.amazonaws.com/dzuz14/thumbnails/canyon.jpg", "https://s3.us-east-2.amazonaws.com/dzuz14/thumbnails/city.jpg", "https://s3.us-east-2.amazonaws.com/dzuz14/thumbnails/desert.jpg", "https://s3.us-east-2.amazonaws.com/dzuz14/thumbnails/mountains.jpg", "https://s3.us-east-2.amazonaws.com/dzuz14/thumbnails/redsky.jpg", "https://s3.us-east-2.amazonaws.com/dzuz14/thumbnails/sandy-shores.jpg", "https://s3.us-east-2.amazonaws.com/dzuz14/thumbnails/tree-of-life.jpg"],
       currentIndex: 0,
-      translateValue: 0
+      translateValue: 0,
+      top: props.top,
+      left: props.left,
+      width: props.width,
+      height: props.height
     };
     return _this;
   }
@@ -360,14 +386,15 @@ function (_Component) {
         className: "slider",
         style: {
           position: 'absolute',
-          top: 50,
-          width: 640,
-          height: 400,
+          top: this.state.top,
+          left: this.state.left,
+          width: this.state.width,
+          height: this.state.height,
           overflow: 'hidden'
         },
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 69
+          lineNumber: 87
         }
       }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", {
         className: "slider-wrapper",
@@ -378,7 +405,7 @@ function (_Component) {
         },
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 77
+          lineNumber: 96
         }
       }, this.state.images.map(function (image, i) {
         return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_Slide__["a" /* default */], {
@@ -386,7 +413,7 @@ function (_Component) {
           image: image,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 85
+            lineNumber: 104
           }
         });
       })), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", {
@@ -396,19 +423,25 @@ function (_Component) {
         },
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 90
+          lineNumber: 109
         }
       }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__components_LeftArrow__["a" /* default */], {
         goToPrevSlide: this.goToPrevSlide,
+        top: this.state.height / 2 - 50,
+        left: this.state.width / 25,
+        size: this.state.height / 10,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 94
+          lineNumber: 113
         }
       }), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__components_RightArrow__["a" /* default */], {
         goToNextSlide: this.goToNextSlide,
+        top: this.state.height / 2 - 50,
+        right: this.state.width - this.state.width / 25,
+        size: this.state.height / 10,
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 98
+          lineNumber: 121
         }
       })));
     }
@@ -445,14 +478,27 @@ var Index = function Index(props) {
       lineNumber: 6
     }
   }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__components_Slider__["a" /* default */], {
+    top: 10,
+    left: 20,
+    height: 0,
+    width: 0,
     __source: {
       fileName: _jsxFileName,
       lineNumber: 7
     }
+  }), " //values are all adjustable", __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__components_Slider__["a" /* default */], {
+    top: 100,
+    left: 800,
+    width: 200,
+    height: 300,
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 9
+    }
   }), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("p", {
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 8
+      lineNumber: 10
     }
   }, "Hello Next.js"));
 };

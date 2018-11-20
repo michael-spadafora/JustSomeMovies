@@ -3,13 +3,13 @@ import { FaArrowAltCircleRight } from 'react-icons/fa';
 
 const styles = {
   position: "absolute",
-  top: 200,
-  left: 575
 }
 const LeftArrow = (props) => {
+  styles.top = props.top - props.size
+  styles.left = props.right - props.size
   return (
     <div className="forwardArrow" onClick = {props.goToNextSlide}>
-      <FaArrowAltCircleRight size = '50px' style={styles}></FaArrowAltCircleRight>
+      <FaArrowAltCircleRight size = {props.size} style={styles}></FaArrowAltCircleRight>
     </div>
   );
 }
