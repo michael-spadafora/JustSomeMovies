@@ -9,16 +9,7 @@ export default class Slider extends Component {
     super(props)
 
     this.state = {
-      images: [
-        "https://s3.us-east-2.amazonaws.com/dzuz14/thumbnails/aurora.jpg",
-        "https://s3.us-east-2.amazonaws.com/dzuz14/thumbnails/canyon.jpg",
-        "https://s3.us-east-2.amazonaws.com/dzuz14/thumbnails/city.jpg",
-        "https://s3.us-east-2.amazonaws.com/dzuz14/thumbnails/desert.jpg",
-        "https://s3.us-east-2.amazonaws.com/dzuz14/thumbnails/mountains.jpg",
-        "https://s3.us-east-2.amazonaws.com/dzuz14/thumbnails/redsky.jpg",
-        "https://s3.us-east-2.amazonaws.com/dzuz14/thumbnails/sandy-shores.jpg",
-        "https://s3.us-east-2.amazonaws.com/dzuz14/thumbnails/tree-of-life.jpg"
-      ],
+      images: [],
       currentIndex: 0,
       translateValue: 0,
       top: props.top,
@@ -26,6 +17,15 @@ export default class Slider extends Component {
       width: props.width,
       height: props.height
     }
+  }
+
+  getMovies = _ => {
+    // Gets the data from the server and converts the json to state value.
+    // Check server.js for documentation on data routing
+    fetch('http://localhost:4000/movies')
+        .then(response => response.json())
+        .then(response => this.setState({images: response.movies}))
+        .catch(err => console.error(err))
   }
 
   goToPrevSlide = () => {
@@ -81,7 +81,9 @@ export default class Slider extends Component {
       width: this.slideWidth()
     }))
    }
+   this.getMovies();
  }
+
   render() {
     return (
       <div className="slider" style={{
@@ -100,8 +102,8 @@ export default class Slider extends Component {
             display: 'flex',
           }}>
             {
-              this.state.images.map((image, i) => (
-                <Slide key={i} image={image} />
+              this.state.images.map(({backdrop_url}, i) => (
+                <Slide key={i} image={"https://image.tmdb.org/t/p/w780" + backdrop_url} />
               ))
             }
         </div>
