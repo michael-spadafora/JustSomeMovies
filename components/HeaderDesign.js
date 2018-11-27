@@ -1,14 +1,24 @@
 import Link from 'next/link'
+import Img from 'react-image'
 
 
 const linkStyle = {
   marginRight: 15
 }
 
+const iconStyle = {
+  marginRight:15,
+  marginTop:10,
+  height: 'auto',
+  width: 'auto', 
+  'max-width': '100px', 
+  'max-height': '120px'
+}
+
 const HeaderDesign = (props) => {
     return <nav className="mainHead">
         <ul className="navbar-nav">
-
+            <Img src="https://i.ibb.co/LtLp5Ww/logo.png" alt="logo" border="0" style={iconStyle}/> 
             <Link href="/"><a className="nav-link">JSM</a></Link>
             <Link href="/"><a className="nav-link">Movies</a></Link>
             <Link href="/"><a className="nav-link">Actors</a></Link>
@@ -50,6 +60,7 @@ const HeaderDesign = (props) => {
           }
 
           input {
+              margin-right: 20px;
               float: right;
               center
               text-align: center;
@@ -62,6 +73,7 @@ const HeaderDesign = (props) => {
           }
 
           button {
+              margin-right: 10px;
               float: right;
               text-align: center;
               padding: 7px ;

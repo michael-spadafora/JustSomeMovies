@@ -6,14 +6,15 @@ import Slider from '../components/Slider';
 const Index = (props) => (
     <div>
     	<HeaderLayout head/>
-      <Slider top = {200} left = {20} height = {400} width = {600} /> 
+      <Slider top = {80} left = {20} height = {400} width = {900} /> 
+      {/* //values are all adjustable */}
+      {/* we need to replace these with other images for better sizing */}
+
+      <Slider top = {80} left = {940} height = {600} width =  {400}/>
+
+      {/* we need to replace these with other images for better sizing */}
       {/* //values are all adjustable */}
 
-      <Slider top = {300} left = {800} width = {200} height =  {300}/>
-      <Slider top = {10} left = {20} height = {400} width = {600} /> 
-      {/* //values are all adjustable */}
-
-      <Slider top = {100} left = {800} width = {200} height =  {300}/>
     </div>
   )
   
