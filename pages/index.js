@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import Link from 'next/link'
 import HeaderLayout from '../components/HeaderLayout'
 import Slider from '../components/Slider';
@@ -17,3 +18,13 @@ const Index = (props) => (
   )
   
   export default Index
+=======
+import Person from '../components/Person.js'
+import Movie from '../components/Movie.js'
+
+export default () => (
+    <div>
+        <Movie />
+    </div>
+)
+>>>>>>> ba674d9c975cc6f1a31b055abf6dcc1aab7e20bb
