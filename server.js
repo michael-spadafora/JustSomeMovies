@@ -47,6 +47,18 @@ app.get('/persons', (req, res) => {
     });
 });
 
+app.get('/sliderImages', (req,res) => {
+    con.query('SELECT * FROM movies', (error,results) => {
+        if(error) 
+            return res.send(error);
+        else {
+            return res.json({
+                movies: results
+            })
+        }
+    });
+});
+
 app.listen(4000, () => {
     // Waits for a request from client 
     console.log('Go to localhost:4000/');
