@@ -7,18 +7,20 @@ const linkStyle = {
 }
 
 const iconStyle = {
-  marginRight:15,
-  marginTop:10,
+  marginRight:0,
+  marginTop:0,
   height: 'auto',
   width: 'auto', 
+  display: 'inline',
   'max-width': '100px', 
   'max-height': '120px'
 }
 
 const HeaderDesign = (props) => {
-    return <nav className="mainHead">
+  return (
+     <nav className="mainHead">
         <ul className="navbar-nav">
-            <Img src="https://i.ibb.co/LtLp5Ww/logo.png" alt="logo" border="0" style={iconStyle}/> 
+            <Link href="/"><a><img src="https://i.ibb.co/LtLp5Ww/logo.png" alt="logo" border="0" style={iconStyle}/> </a></Link>
             <Link href="/"><a className="nav-link">JSM</a></Link>
             <Link href="/"><a className="nav-link">Movies</a></Link>
             <Link href="/"><a className="nav-link">Actors</a></Link>
@@ -29,12 +31,15 @@ const HeaderDesign = (props) => {
         
         <style jsx>{`
 
+
           mainHead {
             margin: 0;
+            width: 100%;
             font-family: Arial, Helvetica, sans-serif;
           }
 
           .mainHead {
+            width: 100%;
             overflow: hidden;
             background-color: #333;
           }
@@ -86,7 +91,7 @@ const HeaderDesign = (props) => {
 
       `}</style>
     </nav>
-};
+  )};
 
 export default HeaderDesign
 
