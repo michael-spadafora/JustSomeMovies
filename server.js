@@ -1,3 +1,6 @@
+// Needs to be run by using 'node server.js' to allow database usage
+// Server for backend implementation
+
 const mysql = require('mysql');
 const express = require('express');
 const cors = require('cors');
