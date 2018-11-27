@@ -15,9 +15,12 @@ con.connect(err => {
     if(err) throw err;
 });
 
-app.use(cors());
+app.use(cors()); // Will be used for access control in the future
 
 app.get('/movies', (req, res) => {
+    // Takes SQL query and creates a GET method route to send data to /movies path
+    // Once client calls for data from /movies the results of the query is sent
+    // Can be changed to reference specific searches 
     con.query('SELECT * FROM movies', (error,results) => {
         if(error) 
             return res.send(error);
@@ -42,5 +45,6 @@ app.get('/persons', (req, res) => {
 });
 
 app.listen(4000, () => {
+    // Waits for a request from client 
     console.log('Go to localhost:4000/');
 });

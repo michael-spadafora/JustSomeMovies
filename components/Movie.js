@@ -3,19 +3,26 @@ import React, {Component} from 'react';
 class Movie extends Component {
 
     state = {
-        movies: []
+        movies: [] // the data returned by databse server
     }
+
+    // Instantiates server request to get data
     componentDidMount() {
         this.getMovies();
     }
 
     getMovies = _ => {
+        // Gets the data from the server and converts the json to state value.
+        // Check server.js for documentation on data routing
         fetch('http://localhost:4000/movies')
             .then(response => response.json())
             .then(response => this.setState({movies: response.movies}))
             .catch(err => console.error(err))
     }
     
+    // Takes the returned database information and displays the results.
+    // Used to map the database values to front-end, using movie_id as a 
+    // key for idenfication of order (not really needed for movies)
     renderMovie = ({movie_id, title, poster_url}) => 
     <div key={movie_id} className="movieBox">
         <img className="image" src={"https://image.tmdb.org/t/p/w500" + poster_url} alt={title} />
@@ -27,6 +34,7 @@ class Movie extends Component {
         return (
             <div className = "container">
                 {movies.map(this.renderMovie)}
+                {/* Takes the array of movie data and renders the items */}
                 <link href="https://fonts.googleapis.com/css?family=Nunito:900:300" rel="stylesheet"/>
                 <style jsx global> {`
                     .container{
