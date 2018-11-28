@@ -25,11 +25,14 @@ const HeaderDesign = (props) => {
             {/* assuming we dont need the above since our logo is now usable */}
             <Link href="/"><a className="nav-link">Movies</a></Link>
             <Link href="/"><a className="nav-link">Actors</a></Link>
-            <input className="search" type="search" placeholder="Search" aria-label="Search"/>
-            <form action="http://google.com"> 
-            {/* replace the above link with our search page*/}
-              <button type="Searchbutton">Search</button>
-            </form>
+
+            {/* <Link href="/search"> */}
+              <form method="get" action="/search">
+                <input className="search" name="query" type="text" placeholder="Search" aria-label="Search"/> 
+                <button type="submit">Search</button>
+              </form>             
+              {/* </Link> */}
+
         </ul>
 
         
