@@ -12,8 +12,8 @@ const iconStyle = {
   height: 'auto',
   width: 'auto', 
   display: 'inline',
-  'max-width': '100px', 
-  'max-height': '120px'
+  maxWidth: '100px', 
+  maxHeight: '120px'
 }
 
 const HeaderDesign = (props) => {
