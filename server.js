@@ -4,21 +4,19 @@
 const mysql = require('mysql');
 const express = require('express');
 const cors = require('cors');
-
 const app = express();
 
 var con = mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  password: "root",
-  database: "sbudb"
+host: "localhost",
+user: "root",
+password: "root",
+database: "sbudb"
 });
 
 con.connect(err => {
     if(err) throw err;
 });
 
-app.use(cors()); // Will be used for access control in the future
 
 app.get('/movies', (req, res) => {
     // Takes SQL query and creates a GET method route to send data to /movies path
@@ -54,10 +52,26 @@ app.get('/sliderImages', (req,res) => {
         else {
             return res.json({
                 movies: results
-            })
+            });
         }
     });
 });
+
+app.get('/a/:id',function(req,res) {
+    con.query('SELECT * FROM person WHERE p_id = ?', req.params.id, function(err,results){
+        if(err)
+            return res.send(err);
+        else {
+            return res.json({
+                actor: results
+            });
+        }
+    });
+});
+
+app.get('*',(req,res)=> {
+    return handle(req,res);
+})
 
 app.listen(4000, () => {
     // Waits for a request from client 
