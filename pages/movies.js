@@ -1,4 +1,14 @@
-//what we want here:
-//select * from actors
-//sort by name, rating, genre etc dropdown menu
-//browsing: only show movies with stars from x to y, only show movies of genre z
+
+import Link from 'next/link'
+import HeaderLayout from '../components/HeaderLayout'
+import Slider from '../components/Slider';
+import Movie from '../components/Movie'
+
+const Index = (props) => (
+    <div>
+    	<HeaderLayout head/>
+        <Movie></Movie>
+    </div>
+  )
+  
+  export default Index
