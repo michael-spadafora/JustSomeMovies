@@ -36,22 +36,24 @@ class Movie extends Component {
                 {movies.map(this.renderMovie)}
                 {/* Takes the array of movie data and renders the items */}
                 <link href="https://fonts.googleapis.com/css?family=Nunito:900:300" rel="stylesheet"/>
-                <style> {`
+                <style jsx global> {`
                     .container{
-                        display: grid;
-                        grid-gap: 10px;
+                        display: grid; 
+                        grid-gap: 1rem;
+                        justify-content:center;
                         grid-template-columns:repeat(auto-fill,200px);
                     }
                     .image {
                         width: 200px;
                         border-radius:5px;
                         transition: all .2s ease-in-out;
+                        overflow:hidden;
                     }
                     .movieBox {
                         position:relative;
                         width:200px;
                         height:280px;
-                        margin:10px;
+                        margin-top:1rem;
                     }
                     .movieBox img {
                         display:block;
