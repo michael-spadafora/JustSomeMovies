@@ -4,11 +4,11 @@ import HeaderLayout from '../components/HeaderLayout'
 import Slider from '../components/Slider';
 import Movie from '../components/Movie'
 
-const Index = (props) => (
+const Movies = (props) => (
     <div>
     	<HeaderLayout head/>
-        <Movie></Movie>
+        <Movie/>
     </div>
   )
   
-  export default Index
+  export default Movies

@@ -1,7 +1,5 @@
 
-import Link from 'next/link'
 import HeaderLayout from '../components/HeaderLayout'
-import Slider from '../components/Slider';
 import Table from '../components/Table'
 
 const data = [{
@@ -12,23 +10,19 @@ const data = [{
   age: 22
 }]
 
-queryPerson = () => {
+const query = {}
 
-}
-queryMovie = () => {
-  
-}
-queryDirector = () => {
-  
-}
 
 const searchResults = (props) => (
     <div>
     	<HeaderLayout head/>
-      <Table data = {data} type = {'movie'}/>   
-      <Table data = {data} type = {'actor'}/>    
-      <Table data = {data} type = {'director'}/>    
+      <a> MOVIES </a>
+      <Table data = {data} type = {'movie'} />   
+      <a> ACTORS </a>
+      <Table data = {data} type = {'actor'}  />    
+      <a> DIRECTORS </a>
+      <Table data = {data} type = {'director'} />    
     </div>
 )
   
-  export default searchResults
+export default searchResults

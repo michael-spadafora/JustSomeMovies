@@ -23,9 +23,10 @@ const HeaderDesign = (props) => {
             <Link href="/"><a><img src="https://i.ibb.co/LtLp5Ww/logo.png" alt="logo" border="0" style={iconStyle}/> </a></Link>
             {/* <Link href="/"><a className="nav-link">JSM</a></Link> */}
             {/* assuming we dont need the above since our logo is now usable */}
-            <Link href="/"><a className="nav-link">Movies</a></Link>
-            <Link href="/"><a className="nav-link">Actors</a></Link>
+            <Link href="/movies"><a className="nav-link">Movies</a></Link>
+            <Link href="/actors"><a className="nav-link">Actors</a></Link>
 
+      
             {/* <Link href="/search"> */}
               <form method="get" action="/search">
                 <input className="search" name="query" type="text" placeholder="Search" aria-label="Search"/> 
