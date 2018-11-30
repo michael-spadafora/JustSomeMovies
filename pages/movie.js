@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
-import fetch from 'isomorphic-unfetch'
-import HeaderLayout from '../components/HeaderLayout'
+import fetch from 'isomorphic-unfetch';
+import HeaderLayout from '../components/HeaderLayout';
+import Head from 'next/head';
 
 export default class extends Component {
     // get the id from the link and pass it through to database query
