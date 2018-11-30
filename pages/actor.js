@@ -35,7 +35,7 @@ export default class extends Component {
                     </div>
                 <style jsx global> {`
                     body {
-                        background-color: #f0f0f0;
+                        background-color: #f2f2f2;
                         font-family: Nunito;
                     }
                     .container {
@@ -54,8 +54,8 @@ export default class extends Component {
                         height: 300px;
                         width: 210px;
                         position: relative;
-                        -webkit-box-shadow: 0 0 0 5px #f0f0f0;
-                        -moz-box-shadow: 0 0 0 5px #f0f0f0;
+                        -webkit-box-shadow: 0 0 0 5px #f2f2f2;
+                        -moz-box-shadow: 0 0 0 5px #f2f2f2;
                     }
                     .personPictureBox img {
                         width:210px;
