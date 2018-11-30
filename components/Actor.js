@@ -1,25 +1,25 @@
 import React, {Component} from 'react';
 import Link from 'next/link'
 
-class Person extends Component {
+class Actor extends Component {
     constructor() {
         super();
         this.state = {
-            persons: []
+            actors: []
         }
     }
     componentDidMount() {
-        this.getPersons();
+        this.getActors();
     }
 
-    getPersons = _ => {
-        fetch('http://localhost:4000/persons')
+    getActors = _ => {
+        fetch('http://localhost:4000/actors')
             .then(response => response.json())
-            .then(response => this.setState({persons: response.persons}))
+            .then(response => this.setState({actors: response.actors}))
             .catch(err => console.error(err))
     }
 
-    renderPerson = ({p_id, p_name, img_url}) => {
+    renderActors = ({p_id, p_name, img_url}) => {
         if(img_url!=null) {
             return <div key={p_id} className="personBox">
                 <Link as={`/a/${p_id}`} href={`/actor?id=${p_id}`}><img className="image" src={"https://image.tmdb.org/t/p/w500" + img_url} alt={p_name} /></Link>
@@ -29,10 +29,10 @@ class Person extends Component {
     }
 
     render() {
-        const {persons} = this.state;
+        const {actors} = this.state;
         return (
             <div className="container">
-                {persons.map(this.renderPerson)}
+                {actors.map(this.renderActors)}
                 <link href="https://fonts.googleapis.com/css?family=Nunito:900:300" rel="stylesheet"/>
                 <style jsx global> {`
                     .container{
@@ -81,4 +81,4 @@ class Person extends Component {
     }
 }
 
-export default Person;
+export default Actor;

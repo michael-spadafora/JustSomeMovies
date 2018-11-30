@@ -1,4 +1,6 @@
 import React, {Component} from 'react';
+import Link from 'next/link';
+import Head from 'next/head';
 
 class Movie extends Component {
 
@@ -25,7 +27,7 @@ class Movie extends Component {
     // key for idenfication of order (not really needed for movies)
     renderMovie = ({movie_id, title, poster_url}) => 
     <div key={movie_id} className="movieBox">
-        <img className="image" src={"https://image.tmdb.org/t/p/w500" + poster_url} alt={title} />
+        <Link as={`/m/${movie_id}`} href={`/movie?id=${movie_id}`}><img className="image" src={"https://image.tmdb.org/t/p/w500" + poster_url} alt={title} /></Link>
         <div className="imgText">{title}</div>
     </div>
 
@@ -33,9 +35,12 @@ class Movie extends Component {
         const {movies} = this.state;
         return (
             <div className = "container">
+                <Head>
+                    <title>Movies</title>
+                    <link href="https://fonts.googleapis.com/css?family=Nunito:900:300" rel="stylesheet"/>
+                </Head>
                 {movies.map(this.renderMovie)}
                 {/* Takes the array of movie data and renders the items */}
-                <link href="https://fonts.googleapis.com/css?family=Nunito:900:300" rel="stylesheet"/>
                 <style jsx global> {`
                     .container{
                         display: grid; 
