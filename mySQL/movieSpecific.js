@@ -11,7 +11,9 @@ con.connect(function(err) {
     if (err) throw err;    
     var sql = "INSERT INTO movie_genres (movie_id,genre_id) VALUES ?";
     var values = [
-        [29,14]
+        [71,3],
+        [71,2],
+        [71,8]
     ];
     
     con.query(sql,[values],function(err,result) {

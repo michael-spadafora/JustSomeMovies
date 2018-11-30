@@ -1,10 +1,15 @@
 
-import Link from 'next/link'
-import HeaderLayout from '../components/HeaderLayout'
+import Link from 'next/link';
+import HeaderLayout from '../components/HeaderLayout';
 import Slider from '../components/Slider';
+import Head from 'next/head';
 
 const Index = (props) => (
     <div>
+      <Head>
+        <title>Just Some Movies</title>
+        <link href="https://fonts.googleapis.com/css?family=Nunito:900:300" rel="stylesheet"/>
+      </Head>
     	<HeaderLayout head/>
       <Slider top = {80} left = {20} height = {400} width = {900} /> 
       {/* //values are all adjustable */}
@@ -14,7 +19,11 @@ const Index = (props) => (
 
       {/* we need to replace these with other images for better sizing */}
       {/* //values are all adjustable */}
-
+      <style jsx global> {`
+        body {
+         background-color: #f2f2f2;
+        }
+      `}</style>
     </div>
   )
   

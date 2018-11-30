@@ -23,7 +23,7 @@ var gRows;
 con.query('SELECT * FROM person', function(err,rows,fields) {
     if(err) throw err;
     gRows = rows;
-    apiCallDob();
+    apiCallPersonImg();
 });
 
 var i = 0;
@@ -38,6 +38,7 @@ function setValue(value) {
     pid = value;
 }
 
+// Will retrieve dobs from api and update person table
 function apiCallDob() {
     if(i==gRows.length) return;
     personid = gRows[i].tpid;
@@ -46,18 +47,38 @@ function apiCallDob() {
     };
     moviedb.personInfo(parameters).then(res => {
         dob = res.birthday;
-        setTimeout(function(){sqlUpdateDob(dob,personid)},100)
+        setTimeout(function(){
+            var updateDob = `UPDATE person SET dob = ? WHERE tpid = ?`;
+            con.query(updateDob, [dob, personid], function (err, result) {
+                if (err) throw err;
+                console.log(personid,dob);
+            });
+        },100)
     }).catch(console.error);
     i++;
     setTimeout(apiCallDob, 500);
 }
 
-function sqlUpdateDob(dob, personid) {
-    var updateDob = `UPDATE person SET dob = ? WHERE tpid = ?`;
-    con.query(updateDob, [dob, personid], function (err, result) {
-        if (err) throw err;
-        console.log(personid,dob);
-    });
+
+// Will retrieve the profile image url from api and update into person table
+function apiCallPersonImg() {
+    if(i==gRows.length) return;
+    personid = gRows[i].tpid;
+    parameters = {
+        id: personid
+    };
+    moviedb.personInfo(parameters).then(res => {
+        var imgurl = res.profile_path;
+        setTimeout(function(){
+            var updatePersonImage = `UPDATE person SET img_url = ? WHERE tpid = ?`;
+            con.query(updatePersonImage, [imgurl, personid], function (err, result) {
+                if (err) throw err;
+                console.log(personid,imgurl);
+            });
+        },100)
+    }).catch(console.error);
+    i++;
+    setTimeout(apiCallPersonImg, 500);
 }
 
 function apiCallPeople() {
@@ -70,11 +91,8 @@ function apiCallPeople() {
     }
     moviedb.searchMovie(parameters).then(res => {
         moviedb.movieCredits(res.results[0].id).then(res2 => {
-            //console.log(res2.cast[0].name);
-            //for(var j in (res2.cast)) {
             var j = 0;
             sqlCrew(res2,j);
-            //}
         }).catch(console.error);
     }).catch(console.error);
 
@@ -112,6 +130,7 @@ function sqlCrew(res2,j) {
     department = res2.crew[j].department;
     personid = res2.crew[j].id;
     job = res2.crew[j].job;
+    imgurl = res2.crew[j].profile_path;
     if(gender == 1) {
         gender = "female";
     }
@@ -121,8 +140,8 @@ function sqlCrew(res2,j) {
     else if(gender == 0) {
         gender = "";
     }
-    var sql = `INSERT IGNORE INTO Person(p_name, gender, tpid) VALUES (?,?,?)`;
-    con.query(sql, [crewName, gender, personid], function (err, result) {
+    var sql = `INSERT IGNORE INTO Person(p_name, gender, tpid, img_url) VALUES (?,?,?,?)`;
+    con.query(sql, [crewName, gender, personid, imgurl], function (err, result) {
         if (err) throw err;
         if(result.insertId == 0) {
             setTimeout(function(){
@@ -218,6 +237,7 @@ function sqlActors(res2,j) {
     gender = res2.cast[j].gender;
     role = res2.cast[j].character;
     personid = res2.cast[j].id;
+    imgurl = res2.cast[j].profile_path;
     if(gender == 1) {
         gender = "female";
     }
@@ -227,8 +247,8 @@ function sqlActors(res2,j) {
     else if(gender == 0) {
         gender = "";
     }
-    var sql = `INSERT IGNORE INTO Person(p_name, gender, tpid) VALUES (?,?,?)`;
-    con.query(sql, [actorName, gender, personid], function (err, result) {
+    var sql = `INSERT IGNORE INTO Person(p_name, gender, tpid, imgurl) VALUES (?,?,?,?)`;
+    con.query(sql, [actorName, gender, personid, imgurl], function (err, result) {
         if (err) throw err;
         if(result.insertId == 0) {
             var getId = `SELECT p_id FROM person WHERE p_name = ?`
