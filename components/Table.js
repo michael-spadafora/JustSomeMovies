@@ -4,19 +4,31 @@ import "react-table/react-table.css";
 
 const moviesColumns = [{
     Header: 'Name',
-    accessor: 'name'
+    accessor: 'name',
   }, {
-    Header: 'Age',
-    accessor: 'age'
+    Header: 'Genres',
+    accessor: 'genres'
+  }, {
+    Header: 'Director',
+    accessor: 'director'
+  }, {
+    Header: 'Actors',
+    accessor: 'actors'
+  }, {
+      Header: 'Rating',
+      accessor: 'rating'
   }]
 
-const actorsColumns = {
+const actorsColumns = [{
+    Header: 'Name',
+    accessor: 'name'
+  }
+]
 
-}
-
-const directorColumns = {
-
-}
+const directorColumns = [{
+    Header: 'Name',
+    accessor: 'name'
+  }]
 class App extends Component {
     constructor(props) {
         super(props)
