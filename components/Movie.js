@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import Link from 'next/link';
-import Head from 'next/head';
 
 class Movie extends Component {
 
@@ -35,10 +34,6 @@ class Movie extends Component {
         const {movies} = this.state;
         return (
             <div className = "container">
-                <Head>
-                    <title>Movies</title>
-                    <link href="https://fonts.googleapis.com/css?family=Nunito:900:300" rel="stylesheet"/>
-                </Head>
                 {movies.map(this.renderMovie)}
                 {/* Takes the array of movie data and renders the items */}
                 <style jsx global> {`
