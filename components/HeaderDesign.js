@@ -1,10 +1,9 @@
 import Link from 'next/link'
-import Img from 'react-image'
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-
-const linkStyle = {
-  marginRight: 15
-}
+library.add(faSearch);
 
 const iconStyle = {
   marginRight:0,
@@ -12,8 +11,8 @@ const iconStyle = {
   height: 'auto',
   width: 'auto', 
   display: 'inline',
-  'max-width': '100px', 
-  'max-height': '120px'
+  maxWidth: '100px', 
+  maxHeight: '120px'
 }
 
 const HeaderDesign = (props) => {
@@ -23,76 +22,76 @@ const HeaderDesign = (props) => {
             <Link href="/"><a><img src="https://i.ibb.co/LtLp5Ww/logo.png" alt="logo" border="0" style={iconStyle}/> </a></Link>
             {/* <Link href="/"><a className="nav-link">JSM</a></Link> */}
             {/* assuming we dont need the above since our logo is now usable */}
-            <Link href="/"><a className="nav-link">Movies</a></Link>
-            <Link href="/"><a className="nav-link">Actors</a></Link>
-            <input className="search" type="search" placeholder="Search" aria-label="Search"/>
+            <Link href="/movies"><a className="nav-link">Movies</a></Link>
+            <Link href="/actors"><a className="nav-link">Actors</a></Link>
             <form action="http://google.com"> 
             {/* replace the above link with our search page*/}
-              <button type="Searchbutton">Search</button>
+              <button type="Searchbutton"><FontAwesomeIcon icon="search" /></button>
+              <input className="search" type="search" placeholder="Search" aria-label="Search"/>
             </form>
         </ul>
 
         
         <style jsx>{`
 
-
-          mainHead {
-            margin: 0;
-            width: 100%;
-            font-family: Arial, Helvetica, sans-serif;
-          }
-
           .mainHead {
-            width: 100%;
+            font-family: Arial, Helvetica, sans-serif;
             overflow: hidden;
             background-color: #333;
+            padding-bottom:10px;
+            margin:-8px;
           }
 
           .mainHead a {
             float: left;
             color: #f2f2f2;
-            text-align: center;
-            padding: 14px 16px;
+            padding:5px;
             text-decoration: none;
             font-size: 17px;
-            font-family: Arial
+            font-family: Arial;
+            display:inline;
           }
 
-          .mainHead a:hover {
-            background-color: #ddd;
+          .nav-link {
+            margin-right:20px;
+          }
+
+          .nav-link:hover {
+            background-color: #484848;
             color: black;
           }
 
-          .mainHead a.active {
+          .mainHead a:active {
             background-color: #4CAF50;
             color: white;
           }
 
+          form{
+            display:inline;
+          }
+
           input {
-              margin-right: 20px;
               float: right;
-              center
-              text-align: center;
               padding: 7px 7px;
               text-decoration: none;
               font-size: 17px;
-              font-family: Arial
+              font-family: Arial;
               height: 30px;
               background-color: #f2f2f2;
+              border-radius:5px;
           }
 
           button {
-              margin-right: 10px;
+              margin-right: 20px;
               float: right;
-              text-align: center;
-              padding: 7px ;
-              text-decoration: none;
               font-size: 17px;
-              height: 38px;
-              font-family: Arial
+              height: 30px;
+              font-family: Arial;
+              background-color:transparent;
+              border-color:transparent;
+              color:white;
+              cursor:pointer;
           }
-
-
       `}</style>
     </nav>
   )};
