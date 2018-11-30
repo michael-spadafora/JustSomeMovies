@@ -14,7 +14,11 @@ const Index = (props) => (
 
       {/* we need to replace these with other images for better sizing */}
       {/* //values are all adjustable */}
-
+      <style jsx global> {`
+        body {
+         background-color: #f2f2f2;
+        }
+      `}</style>
     </div>
   )
   
