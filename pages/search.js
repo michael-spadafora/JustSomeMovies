@@ -16,7 +16,9 @@ const data = [{
 const searchResults = (props) => (
     <div>
     	<HeaderLayout head/>
-      <Table data = {data} type = {'movie'}/>    
+      <Table data = {data} type = {'movie'}/>   
+      <Table data = {data} type = {'actor'}/>    
+      <Table data = {data} type = {'director'}/>    
     </div>
 )
   
