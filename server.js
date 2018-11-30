@@ -35,6 +35,42 @@ app.get('/movies', (req, res) => {
     });
 });
 
+app.get('/persons/:query'), (req, res) => {
+    con.query('SELECT * FROM person WHERE name LIKE ' + req.params.query, (error,results) => {
+        if(error) 
+            return res.send(error);
+        else {
+            return res.json({
+                persons: results
+            })
+        }
+    });
+}
+
+app.get('/movies/:query'), (req, res) => {
+    con.query('SELECT * FROM movies WHERE name LIKE ' + req.params.query, (error,results) => {
+        if(error) 
+            return res.send(error);
+        else {
+            return res.json({
+                persons: results
+            })
+        }
+    });
+}
+
+app.get('/director/:query'), (req, res) => {
+    con.query('SELECT * FROM directors WHERE name LIKE ' + req.params.query, (error,results) => {
+        if(error) 
+            return res.send(error);
+        else {
+            return res.json({
+                persons: results
+            })
+        }
+    });
+}
+
 app.get('/persons', (req, res) => {
     con.query('SELECT * FROM person', (error,results) => {
         if(error) 

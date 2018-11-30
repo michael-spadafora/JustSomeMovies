@@ -12,6 +12,15 @@ const data = [{
   age: 22
 }]
 
+queryPerson = () => {
+
+}
+queryMovie = () => {
+  
+}
+queryDirector = () => {
+  
+}
 
 const searchResults = (props) => (
     <div>
