@@ -7,6 +7,7 @@ import Link from 'next/link'
 import HeaderLayout from '../components/HeaderLayout'
 import Movie from '../components/Movie'
 import SortByMovie from '../components/SortByMovie'
+import Head from 'next/head';
 
 
 const movies = (props) => (

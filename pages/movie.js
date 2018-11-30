@@ -23,7 +23,6 @@ export default class extends Component {
         return (
             <div>
                 <Head>
-                    <title>{this.state.movie[0].title}</title>
                     <link href="https://fonts.googleapis.com/css?family=Nunito:900:300" rel="stylesheet"/>
                 </Head>
                 <HeaderLayout head/>

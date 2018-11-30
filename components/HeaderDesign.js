@@ -74,7 +74,6 @@ const HeaderDesign = (props) => {
 
           input {
               float: right;
-              padding: 7px 7px;
               text-decoration: none;
               font-size: 17px;
               font-family: Arial;
