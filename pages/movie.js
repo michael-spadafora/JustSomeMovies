@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import fetch from 'isomorphic-unfetch';
+// import fetch from 'isomorphic-unfetch';
 import HeaderLayout from '../components/HeaderLayout';
 import Head from 'next/head';
 
