@@ -70,17 +70,17 @@ export default class Slider extends Component {
 
  //if we dont set the size of the items, the default size of slider is size of the slide
  componentDidMount = () => {
-   if (this.state.height === 0) {
-    this.setState(prevState => ({
-      height: this.slideHeight()
-    }))
-  }
+  //  if (this.state.height === 0) {
+  //   this.setState(prevState => ({
+  //     height: this.slideHeight()
+  //   }))
+  // }
 
-  if (this.state.width === 0) {
-    this.setState(prevState => ({
-      width: this.slideWidth()
-    }))
-   }
+  // if (this.state.width === 0) {
+  //   this.setState(prevState => ({
+  //     width: this.slideWidth()
+  //   }))
+  //  }
    this.getMovies();
  }
 

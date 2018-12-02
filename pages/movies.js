@@ -11,10 +11,10 @@ import SortByMovie from '../components/SortByMovie'
 
 const movies = (props) => (
     <div>
-        <Head>
+        {/* <Head>
             <title>Movies</title>
             <link href="https://fonts.googleapis.com/css?family=Nunito:900:300" rel="stylesheet"/>
-        </Head>
+        </Head> */}
         <HeaderLayout head/>
         <div style={{display:"inline-block",fontSize:"23pt",fontWeight:"bold",paddingLeft:"10px",marginTop:"10px"}}>Movies</div><div style={{marginTop:"10px",position:"relative",float:"right"}}><SortByMovie /></div>
         <Movie />
