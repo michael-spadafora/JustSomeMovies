@@ -24,7 +24,9 @@ DROP TABLE IF EXISTS `critics`;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `critics` (
   `critic_id` int(11) NOT NULL AUTO_INCREMENT,
+  `critic_name` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`critic_id`),
+  UNIQUE KEY `critic_name_UNIQUE` (`critic_name`),
   CONSTRAINT `critics_ibfk_1` FOREIGN KEY (`critic_id`) REFERENCES `person` (`p_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -47,4 +49,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-11-30  0:59:08
+-- Dump completed on 2018-12-02 22:37:48

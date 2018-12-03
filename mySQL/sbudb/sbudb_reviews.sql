@@ -16,27 +16,33 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `genres`
+-- Table structure for table `reviews`
 --
 
-DROP TABLE IF EXISTS `genres`;
+DROP TABLE IF EXISTS `reviews`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
-CREATE TABLE `genres` (
-  `genre_id` int(11) NOT NULL,
-  `genre` varchar(25) DEFAULT NULL,
-  PRIMARY KEY (`genre_id`)
+CREATE TABLE `reviews` (
+  `critic_id` int(11) DEFAULT NULL,
+  `movie_id` int(11) DEFAULT NULL,
+  `review_id` int(11) NOT NULL AUTO_INCREMENT,
+  `rating` int(11) DEFAULT NULL,
+  `comments` varchar(4000) DEFAULT NULL,
+  PRIMARY KEY (`review_id`),
+  KEY `movie_id` (`movie_id`),
+  KEY `critic_id` (`critic_id`),
+  CONSTRAINT `reviews_ibfk_1` FOREIGN KEY (`movie_id`) REFERENCES `movies` (`movie_id`),
+  CONSTRAINT `reviews_ibfk_2` FOREIGN KEY (`critic_id`) REFERENCES `critics` (`critic_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `genres`
+-- Dumping data for table `reviews`
 --
 
-LOCK TABLES `genres` WRITE;
-/*!40000 ALTER TABLE `genres` DISABLE KEYS */;
-INSERT INTO `genres` VALUES (1,'Action'),(2,'Adventure'),(3,'Animation'),(4,'Comedy'),(5,'Crime'),(6,'Documentary'),(7,'Drama'),(8,'Family'),(9,'Fantasy'),(10,'History'),(11,'Horror'),(12,'Music'),(13,'Mystery'),(14,'Romance'),(15,'Science Fiction'),(16,'TV Movie'),(17,'Thriller'),(18,'War'),(19,'Western');
-/*!40000 ALTER TABLE `genres` ENABLE KEYS */;
+LOCK TABLES `reviews` WRITE;
+/*!40000 ALTER TABLE `reviews` DISABLE KEYS */;
+/*!40000 ALTER TABLE `reviews` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -48,4 +54,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-12-02 22:37:50
+-- Dump completed on 2018-12-02 22:37:51
