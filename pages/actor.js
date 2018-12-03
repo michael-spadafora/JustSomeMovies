@@ -38,7 +38,7 @@ export default class extends Component {
             <div>
                 <Head>
                     <title>{this.state.actor.actor[0].p_name}</title>
-                    <link href="https://fonts.googleapis.com/css?family=Nunito:900:300" rel="stylesheet"/>
+                    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet"/>
                 </Head>
                 <HeaderLayout head/>
                 <div className="container">
@@ -49,8 +49,8 @@ export default class extends Component {
                         <h2 className = "personName">  
                             {this.state.actor.actor[0].p_name}
                         </h2>
-                        <div className="personData">Date of Birth: {this.state.actor.actor[0].dob}</div>
-                        <div className="personData">Gender: {this.state.actor.actor[0].gender}</div>
+                        <div className="personDataHeader">Date of Birth</div><div className="personData">{this.state.actor.actor[0].dob}</div>
+                        <div className="personDataHeader">Gender</div><div className="personData">{this.state.actor.actor[0].gender}</div>
                     </div>
                     {this.state.actor.movies.map(this.renderMovies)}
                 <style jsx global> {`
@@ -61,9 +61,13 @@ export default class extends Component {
                         height: 350px;
                         overflow:hidden;
                         margin-right:20px;
+                        margin-bottom:20px;
                         display:inline-block;
                         position:relative;
                         z-index:1;
+                    }
+                    .cardimg {
+                        height:350px;
                     }
                     .card img {
                         width:210px;
@@ -74,12 +78,15 @@ export default class extends Component {
                         cursor:pointer;
                     }
                     .card-body {
-                        padding: 2px 16px;
+                        padding:5px 10px;
                         position:relative;
-                        top:-100px;
-                        height:175px;
+                        top:-120px;
+                        height:200px;
                         background-color:white;
                         z-index:3;
+                    }
+                    .card:hover img {
+                        transform:scale(1.03);
                     }
                     body {
                         background-color: #f2f2f2;
@@ -104,15 +111,16 @@ export default class extends Component {
                     }
                     .personName {
                         font-size: 32px;
-                        font-weight: 600;
                         margin-bottom: 15px;
-                        color: #333;
+                        font-weight:bolder;
                     }
                     .personData {
                         font-size: 16px;
-                        line-height: 26px;
-                        margin-bottom: 20px;
-                        color: #666;
+                        margin-bottom: 10px;
+                    }
+                    .personDataHeader {
+                        font-size:20px;
+                        font-weight:bold;
                     }
                 `}</style>
             </div>
