@@ -26,7 +26,7 @@ con.query('SELECT * FROM movies', function(err,rows,fields) {
     apiCallPersonImg();
 });*/
 
-var i = 19;
+var i = 0;
 var actorName;
 var gender;
 var role;
