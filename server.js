@@ -9,7 +9,7 @@ const app = express();
 var con = mysql.createConnection({
     host: "localhost",
     user: "root",
-    password: "root",
+    password: "password",
     database: "sbudb"
 });
 
@@ -34,41 +34,35 @@ app.get('/movies', (req, res) => {
     });
 });
 
-app.get('/persons/:query'), (req, res) => {
-    con.query('SELECT * FROM person WHERE name LIKE ' + req.params.query, (error,results) => {
+app.get('/search/p', (req, res) => {
+    // Takes SQL query and creates a GET method route to send data to /movies path
+    // Once client calls for data from /movies the results of the query is sent
+    // Can be changed to reference specific searches 
+    con.query('SELECT * FROM person WHERE p_name LIKE ?', '%' + req.query.query + '%', (error,results) => {
         if(error) 
             return res.send(error);
         else {
             return res.json({
-                persons: results
+                movies: results
             })
         }
     });
-}
+});
 
-app.get('/movies/:query'), (req, res) => {
-    con.query('SELECT * FROM movies WHERE name LIKE ' + req.params.query, (error,results) => {
+app.get('/search/m', (req, res) => {
+    // Takes SQL query and creates a GET method route to send data to /movies path
+    // Once client calls for data from /movies the results of the query is sent
+    // Can be changed to reference specific searches 
+    con.query('SELECT * FROM movies WHERE title LIKE ?', '%' + req.query.query + '%', (error,results) => {
         if(error) 
             return res.send(error);
         else {
             return res.json({
-                persons: results
+                movies: results
             })
         }
     });
-}
-
-app.get('/director/:query'), (req, res) => {
-    con.query('SELECT * FROM directors WHERE name LIKE ' + req.params.query, (error,results) => {
-        if(error) 
-            return res.send(error);
-        else {
-            return res.json({
-                persons: results
-            })
-        }
-    });
-}
+});
 
 app.get('/actors', (req, res) => {
     con.query('SELECT * FROM person p INNER JOIN actors a ON p.p_id = a.actor_id', (error,results) => {
