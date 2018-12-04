@@ -17,7 +17,7 @@ var gRows;
 con.query('SELECT * FROM movies', function(err,rows,fields) {
     if(err) throw err;
     gRows = rows;
-    apiCallPeople();
+    apiCallReviews();
 });
 
 /*con.query('SELECT * FROM person', function(err,rows,fields) {
@@ -37,6 +37,8 @@ var dob;
 var prodComp;
 var prodLocation;
 var prodId;
+var rating;
+var votes;
 
 function setValue(value) {
     pid = value;
@@ -50,64 +52,21 @@ function apiCallReviews() {
         query: movietitle
     }
     moviedb.searchMovie(parameters).then(res => {
-        moviedb.movieReviews(res.results[0].id).then(res2 => {
-            var j = 0;
-            sqlReviews(res2,j);
+        moviedb.movieInfo(res.results[0].id).then(res2 => {
+            setTimeout(function(){
+                votes = res2.vote_count;
+                rating = res2.vote_average;
+                var sql = `UPDATE movies SET rating = ?, votes = ? WHERE movie_id = ?`;
+                con.query(sql, [rating, votes, movieid], function (err, result) {
+                    if (err) throw err;
+                    console.log(movietitle + " rated: " + rating + " votes: " + votes);
+                });
+            },200);
         }).catch(console.error);
     }).catch(console.error);
 
     i++;
-    setTimeout(apiCallReviews,30000);
-}
-
-function sqlReviews(res2,j) {
-    if(j == res2.results.length) return;
-
-    var sql = `INSERT IGNORE INTO Person(p_name, gender, tpid, img_url) VALUES (?,?,?,?)`;
-    con.query(sql, [actorName, gender, personid, imgurl], function (err, result) {
-        if (err) throw err;
-        if(result.insertId == 0) {
-            var getId = `SELECT p_id FROM person WHERE p_name = ?`
-            con.query(getId, actorName, function(err,result) {
-                if(err) throw err;
-                setValue(result[0].p_id);
-                var sql2 = 'INSERT IGNORE INTO actors(actor_id) VALUES (' + pid + ')';
-                con.query(sql2, function(err,result) {
-                    if(err) throw err;
-                    console.log(result.insertId + " into actors");
-                    console.log(actorName,gender,role);
-                    setTimeout(function() {
-                        var actsin = `INSERT IGNORE INTO acts_in(actor_id, movie_id, actor_role) VALUES (?,?,?)`;
-                        con.query(actsin, [pid, movieid, role], function(err,result) {
-                            if(err) throw err;
-                            //console.log("affected rows:" + result.affectedRows);
-                        });
-                    },150);
-                });
-            });
-        }
-        else {
-            setTimeout(function() {
-                setValue(result.insertId);
-                var sql2 = 'INSERT IGNORE INTO actors(actor_id) VALUES (' + pid + ')';
-                con.query(sql2, function(err,result) {
-                    if(err) throw err;
-                    console.log(result.insertId + " into actors");
-                    setValue(result.insertId);
-                    console.log(actorName,gender,role);
-                    setTimeout(function() {
-                        var actsin = `INSERT IGNORE INTO acts_in(actor_id, movie_id, actor_role) VALUES (?,?,?)`;
-                        con.query(actsin, [pid, movieid, role], function(err,result) {
-                            if(err) throw err;
-                            //console.log("affected rows:" + result.affectedRows);
-                        });
-                    },150);
-                });
-            },300);
-        }
-    });
-    j++;
-    setTimeout(function(){sqlReviews(res2,j)},500);
+    setTimeout(apiCallReviews,2000);
 }
 
 function apiCallProdComps() {
@@ -222,7 +181,7 @@ function apiCallPeople() {
     }).catch(console.error);
 
     i++;
-    setTimeout(apiCallPeople,70000);
+    setTimeout(apiCallPeople,100000);
 }
 
 function apiCallImages() {
