@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import Link from 'next/link'
+const fetch = require("node-fetch");
 
 class Actor extends Component {
     constructor() {

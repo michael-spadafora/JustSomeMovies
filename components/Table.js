@@ -1,9 +1,18 @@
 import React, { Component } from 'react';
 import ReactTable from "react-table";
 import "react-table/react-table.css";
+import Link from 'next/link'
+import { O_WRONLY } from 'constants';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
 const fetch = require("node-fetch");
 
 const moviesColumns = [{
+    Header: 'Link',
+    accessor: 'movie_id',
+    Cell: (row) => (<Link as =  {"/m/" + row.value} href={`/movie?id=` + row.value} width='10px'> View Page  </Link>),
+    maxWidth: 100 
+},{
     Header: 'Name',
     accessor: 'title',
   }, {
@@ -21,8 +30,14 @@ const moviesColumns = [{
   }]
 
 const actorsColumns = [{
+    Header: 'Link',
+    accessor: 'p_id',
+    Cell: (row) => (<Link as =  {"/a/" + row.value} href={`/actor?id=` + row.value} width='10px'> View Page  </Link>),
+    maxWidth: 100 
+    }, {
     Header: 'Name',
     accessor: 'p_name'
+    // Cell: (row) => (<Link href={`/actor?id=` + row.p_id}> {row.p_name} </Link>)
   },
   {
       Header: 'Gender',
