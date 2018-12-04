@@ -1,8 +1,5 @@
 import React, {Component} from 'react';
-<<<<<<< HEAD
-=======
 // import fetch from 'isomorphic-unfetch';
->>>>>>> 1735fe664a31b7c5e27adbfc2baf0aef2988cd0e
 import HeaderLayout from '../components/HeaderLayout';
 import Link from 'next/link';
 import Head from 'next/head';

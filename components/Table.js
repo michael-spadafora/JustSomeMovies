@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import ReactTable from "react-table";
 import "react-table/react-table.css";
+const fetch = require("node-fetch");
 
 const moviesColumns = [{
     Header: 'Name',
-    accessor: 'name',
+    accessor: 'm_name',
   }, {
     Header: 'Genres',
     accessor: 'genres'
@@ -21,7 +22,11 @@ const moviesColumns = [{
 
 const actorsColumns = [{
     Header: 'Name',
-    accessor: 'name'
+    accessor: 'p_name'
+  },
+  {
+      Header: 'Gender',
+      accessor: 'gender'
   }
 ]
 
@@ -34,8 +39,46 @@ class App extends Component {
         super(props)
 
         this.state = {
-            type: props.type
+            type: props.type,
+            query: props.query
         }
+    }
+
+    componentWillMount() {
+        console.log(this.state.type)
+        if (this.state.type === 'movie') {
+            this.getMovies();
+        }
+    
+        if (this.state.type === 'actor') {
+            this.getActors();
+        }
+        if (this.state.type === 'director') {
+            this.getMovies();
+        }
+    }
+
+    componentDidMount() {
+        
+    }
+
+    getMovies = _ => {
+        console.log("get movies")
+        // Gets the data from the server and converts the json to state value.
+        // Check server.js for documentation on data routing
+        fetch('http://localhost:4000/search/m/?query=' + this.state.query)
+            .then(response => response.json())
+            .then(response => this.setState({data: response.movies}))
+            .catch(err => console.error(err))
+    }
+
+    getActors = _ => {
+        // Gets the data from the server and converts the json to state value.
+        // Check server.js for documentation on data routing
+        fetch('http://localhost:4000/search/p/?query=' + this.state.query)
+            .then(response => response.json())
+            .then(response => this.setState({data: response.movies}))
+            .catch(err => console.error(err))
     }
 
     render() {
@@ -50,7 +93,7 @@ class App extends Component {
         return (
             <div>
                 <ReactTable
-                    data={this.props.data}
+                    data={this.state.data}
                     columns={col}
                     defaultPageSize={3}
                     pageSizeOptions={[3, 6]}
