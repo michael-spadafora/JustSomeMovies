@@ -5,7 +5,7 @@ const fetch = require("node-fetch");
 
 const moviesColumns = [{
     Header: 'Name',
-    accessor: 'm_name',
+    accessor: 'title',
   }, {
     Header: 'Genres',
     accessor: 'genres'
@@ -45,7 +45,6 @@ class App extends Component {
     }
 
     componentWillMount() {
-        console.log(this.state.type)
         if (this.state.type === 'movie') {
             this.getMovies();
         }
@@ -63,7 +62,6 @@ class App extends Component {
     }
 
     getMovies = _ => {
-        console.log("get movies")
         // Gets the data from the server and converts the json to state value.
         // Check server.js for documentation on data routing
         fetch('http://localhost:4000/search/m/?query=' + this.state.query)
