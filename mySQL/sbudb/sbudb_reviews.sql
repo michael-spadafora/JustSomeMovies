@@ -23,16 +23,13 @@ DROP TABLE IF EXISTS `reviews`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `reviews` (
-  `critic_id` int(11) DEFAULT NULL,
   `movie_id` int(11) DEFAULT NULL,
   `review_id` int(11) NOT NULL AUTO_INCREMENT,
   `rating` int(11) DEFAULT NULL,
-  `comments` varchar(4000) DEFAULT NULL,
+  `votes` int(11) DEFAULT NULL,
   PRIMARY KEY (`review_id`),
   KEY `movie_id` (`movie_id`),
-  KEY `critic_id` (`critic_id`),
-  CONSTRAINT `reviews_ibfk_1` FOREIGN KEY (`movie_id`) REFERENCES `movies` (`movie_id`),
-  CONSTRAINT `reviews_ibfk_2` FOREIGN KEY (`critic_id`) REFERENCES `critics` (`critic_id`)
+  CONSTRAINT `reviews_ibfk_1` FOREIGN KEY (`movie_id`) REFERENCES `movies` (`movie_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -54,4 +51,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-12-02 22:37:51
+-- Dump completed on 2018-12-03 22:25:54
