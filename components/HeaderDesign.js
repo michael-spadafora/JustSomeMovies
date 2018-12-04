@@ -63,11 +63,6 @@ const HeaderDesign = (props) => {
             color: black;
           }
 
-          .mainHead a:active {
-            background-color: #4CAF50;
-            color: white;
-          }
-
           form{
             display:inline;
           }
@@ -80,6 +75,7 @@ const HeaderDesign = (props) => {
               height: 30px;
               background-color: #f2f2f2;
               border-radius:5px;
+              padding-left:5px;
           }
 
           button {
