@@ -11,7 +11,7 @@ const Index = (props) => (
         <link href="https://fonts.googleapis.com/css?family=Nunito:900:300" rel="stylesheet"/>
       </Head>
     	<HeaderLayout head/>
-      <Slider top = {80} left = {20} height = {400} width = {900} /> 
+      <Slider top = {80} left = {20} height = {500} width = {780} /> 
       {/* //values are all adjustable */}
       {/* we need to replace these with other images for better sizing */}
 
