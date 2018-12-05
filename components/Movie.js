@@ -3,13 +3,34 @@ import Link from 'next/link';
 
 class Movie extends Component {
 
-    state = {
-        movies: [] // the data returned by databse server
+    constructor(props) {
+        
+        super(props);
+        console.log(props)
+        this.state = {
+            movies: [],
+            sortBy: props.sortBy
+        }
+        // console.log('http://localhost:4000/movies/sortby' + this.state.sortBy)
+
     }
 
     // Instantiates server request to get data
     componentDidMount() {
-        this.getMovies();
+        if (this.state.sortBy) {
+            this.getSortedMovies();
+        }
+        else {
+            this.getMovies();
+        }
+    }
+
+    getSortedMovies = _ => {
+        console.log('http://localhost:4000/movies/sortby' + this.state.sortBy)
+        fetch('http://localhost:4000/movies/sortby' + this.state.sortBy)
+            .then(response => response.json())
+            .then(response => this.setState({movies: response.movies}))
+            .catch(err => console.error(err))
     }
 
     getMovies = _ => {
@@ -20,7 +41,7 @@ class Movie extends Component {
             .then(response => this.setState({movies: response.movies}))
             .catch(err => console.error(err))
     }
-    
+     
     // Takes the returned database information and displays the results.
     // Used to map the database values to front-end, using movie_id as a 
     // key for idenfication of order (not really needed for movies)

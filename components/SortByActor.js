@@ -1,12 +1,12 @@
 import React, {Component} from 'react';
 
-class SortByMovie extends Component {
+class SortByActor extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            data: [{"item":"genre"},{"item":"title"},{"item":"rating"}, {"item":"budget"} , {'item' : 'runtime'}],
-            showMenu: false
+            data: [{"item":"name"},{"item":"id"},{"item":"dob"}],
+            showMenu: false 
         };
         this.showMenu = this.showMenu.bind(this);
         this.closeMenu = this.closeMenu.bind(this);
@@ -34,12 +34,10 @@ class SortByMovie extends Component {
                     this.state.showMenu ? (
                         <div id="myDropdown" className="dropdownContent">
                             {this.state.data.map(d => 
-                                <a href = {'/movies?sortBy=' + d.item} >
-                                    <div className="dropdownItem">{d.item}</div>
-                                </a>
-                                )
-                            }
-                            
+                            <a href = {'/actors?sortBy=' + d.item} >
+                                <div className="dropdownItem">{d.item}</div>
+                            </a>
+                            )}
                         </div>
                     ): (null)
                 }
@@ -96,4 +94,4 @@ class SortByMovie extends Component {
     }
 }
 
-export default SortByMovie
+export default SortByActor

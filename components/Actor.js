@@ -1,15 +1,29 @@
 import React, {Component} from 'react';
 import Link from 'next/link'
+const fetch = require("node-fetch");
 
-class Actor extends Component {
-    constructor() {
-        super();
+class Actor extends Component { 
+    constructor(props) {
+        super(props);
         this.state = {
-            actors: []
+            actors: [],
+            sortBy: props.sortBy
         }
     }
     componentDidMount() {
-        this.getActors();
+        if (this.state.sortBy) {
+            this.getSortedActors();
+        }
+        else {
+            this.getActors();
+        }
+    }
+
+    getSortedActors = _ => {
+        fetch('http://localhost:4000/actors/sortby' + this.state.sortBy)
+        .then(response => response.json())
+        .then(response => this.setState({actors: response.actors}))
+        .catch(err => console.error(err))
     }
 
     getActors = _ => {

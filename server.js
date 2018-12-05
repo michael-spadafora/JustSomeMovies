@@ -34,6 +34,77 @@ app.get('/movies', (req, res) => {
     });
 });
 
+app.get('/movies/sortbytitle', (req, res) => {
+    // Takes SQL query and creates a GET method route to send data to /movies path
+    // Once client calls for data from /movies the results of the query is sent
+    // Can be changed to reference specific searches 
+    con.query('SELECT * FROM movies ORDER BY title', (error,results) => {
+        if(error) 
+            return res.send(error);
+        else {
+            return res.json({
+                movies: results
+            })
+        }
+    });
+});
+
+app.get('/movies/sortbyrating', (req, res) => {
+    // Takes SQL query and creates a GET method route to send data to /movies path
+    // Once client calls for data from /movies the results of the query is sent
+    // Can be changed to reference specific searches 
+    con.query('SELECT * FROM movies ORDER BY rating', (error,results) => {
+        if(error) 
+            return res.send(error);
+        else {
+            return res.json({
+                movies: results
+            })
+        }
+    });
+});
+
+app.get('/movies/sortbygenre', (req, res) => {
+    //EDIT THIS
+    con.query('SELECT * FROM movies ORDER BY genre', (error,results) => {
+        if(error) 
+            return res.send(error);
+        else {
+            return res.json({
+                movies: results
+            })
+        }
+    });
+});
+
+app.get('/movies/sortbyruntime', (req, res) => {
+    //EDIT THIS
+    con.query('SELECT * FROM movies ORDER BY runtime DESC', (error,results) => {
+        if(error) 
+            return res.send(error);
+        else {
+            return res.json({
+                movies: results
+            })
+        }
+    });
+});
+
+app.get('/movies/sortbybudget', (req, res) => {
+    //EDIT THIS
+    con.query('SELECT * FROM movies ORDER BY budget DESC', (error,results) => {
+        if(error) 
+            return res.send(error);
+        else {
+            return res.json({
+                movies: results
+            })
+        }
+    });
+});
+
+
+
 app.get('/search/p', (req, res) => {
     // Takes SQL query and creates a GET method route to send data to /movies path
     // Once client calls for data from /movies the results of the query is sent
@@ -64,6 +135,44 @@ app.get('/search/m', (req, res) => {
     });
 });
 
+
+app.get('/actors/sortbyname', (req, res) => {
+    con.query('SELECT * FROM person p INNER JOIN actors a ON p.p_id = a.actor_id ORDER BY p.p_name', (error,results) => {
+        if(error) 
+            return res.send(error);
+        else {
+            return res.json({
+                actors: results
+            })
+        }
+    });
+});
+
+app.get('/actors/sortbyid', (req, res) => {
+    con.query('SELECT * FROM person p INNER JOIN actors a ON p.p_id = a.actor_id ORDER BY p.p_id', (error,results) => {
+        if(error) 
+            return res.send(error);
+        else {
+            return res.json({
+                actors: results
+            })
+        }
+    });
+});
+
+
+app.get('/actors/sortbydob', (req, res) => {
+    con.query('SELECT * FROM person p INNER JOIN actors a ON p.p_id = a.actor_id ORDER BY DATE(p.Dob) DESC', (error,results) => {
+        if(error) 
+            return res.send(error);
+        else {
+            return res.json({
+                actors: results
+            })
+        }
+    });
+});
+
 app.get('/actors', (req, res) => {
     con.query('SELECT * FROM person p INNER JOIN actors a ON p.p_id = a.actor_id', (error,results) => {
         if(error) 
@@ -73,7 +182,19 @@ app.get('/actors', (req, res) => {
                 actors: results
             })
         }
-    });
+    }); 
+});
+
+app.get('/directors', (req, res) => {
+    con.query('SELECT * FROM person p INNER JOIN directors a ON p.p_id = a.director_id', (error,results) => {
+        if(error) 
+            return res.send(error);
+        else {
+            return res.json({
+                actors: results
+            })
+        }
+    }); 
 });
 
 app.get('/sliderImages', (req,res) => {
