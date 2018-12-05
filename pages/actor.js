@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-// import fetch from 'isomorphic-unfetch';
 import HeaderLayout from '../components/HeaderLayout';
 import Link from 'next/link';
 import Head from 'next/head';
@@ -20,17 +19,54 @@ export default class extends Component {
         })
     }
 
-    renderMovies = ({movie_id,title, poster_url,actor_role}) => {
+    renderMovies = ({movie_id,title,poster_url,actor_role}) => {
         return (
             <div key={movie_id} className="card">
-                <Link as={`/m/${movie_id}`} href={`/movie?id=${movie_id}`}><img src={"https://image.tmdb.org/t/p/w500" + poster_url} alt={title} style={{width:'100%'}}/></Link>
-                <div className="card-body">
-                    <h3>{title}</h3>
-                    <p>{actor_role}</p>
-                </div>
+                <Link as={`/m/${movie_id}`} href={`/movie?id=${movie_id}`}>
+                    <div>
+                        <img src={"https://image.tmdb.org/t/p/w500" + poster_url} alt={title} style={{width:'100%'}}/>
+                        <div className="card-body">
+                            <h3>{title}</h3>
+                            <p>{actor_role}</p>
+                        </div>
+                    </div>
+                </Link>
             </div>
         )
     };
+
+    renderPersonInfo = ({p_id,p_name,img_url,gender,dob}) => {
+        if(img_url != null) {
+            return (
+                <div key={p_id}>
+                    <div className="personPictureBox">
+                        <img src={"https://image.tmdb.org/t/p/w500" + img_url} alt={p_name} />
+                    </div>
+                    <div className="personInfo">
+                        <div className = "personName">  
+                            {p_name}
+                        </div>
+                        <div className="personDataHeader">Date of Birth</div><div className="personData">{dob}</div>
+                        <div className="personDataHeader">Gender</div><div className="personData">{gender}</div>
+                    </div>
+                </div>
+            )
+        }
+        else {
+            return (
+                <div key={p_id}>
+                    <div className="personPictureBox"></div>
+                    <div className="personInfo">
+                        <div className = "personName">  
+                            {p_name}
+                        </div>
+                        <div className="personDataHeader">Date of Birth</div><div className="personData">{dob}</div>
+                        <div className="personDataHeader">Gender</div><div className="personData">{gender}</div>
+                    </div>
+                </div>
+            )
+        }
+    }
 
     render() {
         console.log(this.state.actor.movies);
@@ -42,17 +78,11 @@ export default class extends Component {
                 </Head>
                 <HeaderLayout head/>
                 <div className="container">
-                    <div className="personPictureBox">
-                        <img src={"https://image.tmdb.org/t/p/w500" + this.state.actor.actor[0].img_url} alt={this.state.actor.actor[0].p_name} />
+                    {this.state.actor.actor.map(this.renderPersonInfo)}
+                    <div>
+                        <h1>Movies</h1>
+                        {this.state.actor.movies.map(this.renderMovies)}
                     </div>
-                    <div className="personInfo">
-                        <h2 className = "personName">  
-                            {this.state.actor.actor[0].p_name}
-                        </h2>
-                        <div className="personDataHeader">Date of Birth</div><div className="personData">{this.state.actor.actor[0].dob}</div>
-                        <div className="personDataHeader">Gender</div><div className="personData">{this.state.actor.actor[0].gender}</div>
-                    </div>
-                    {this.state.actor.movies.map(this.renderMovies)}
                 <style jsx global> {`
                     .card {
                         box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
@@ -93,21 +123,33 @@ export default class extends Component {
                         font-family: Nunito;
                     }
                     .container {
-                        margin: 20px;
+                        margin: 20px auto 20px;
+                        background-color: #fff;
+                        padding: 20px 20px 20px;
+                        border-radius: 6px;
+                        -webkit-border-radius: 6px;
+                        -moz-border-radius: 6px;
+                        box-shadow: 0 2px 5px rgba(0,0,0,0.075);
+                        -webkit-box-shadow: 0 2px 5px rgba(0,0,0,0.075);
+                        -moz-box-shadow: 0 2px 5px rgba(0,0,0,0.075);
                     }
                     .personPictureBox {
                         overflow: hidden;
-                        height: 450px;
-                        width: 400px;
+                        height: 360px;
+                        width: 250px;
                         position: relative;
                         -webkit-box-shadow: 0 0 0 5px #f2f2f2;
                         -moz-box-shadow: 0 0 0 5px #f2f2f2;
+                        border-radius: 5px;
+                        float:left;
+                        margin-right:20px;
+                        margin-bottom:20px;
                     }
                     .personPictureBox img {
-                        width:300px;
+                        width:250px;
                     }
                     .personInfo {
-                        position: relative;
+                        height: 360px;
                     }
                     .personName {
                         font-size: 32px;
