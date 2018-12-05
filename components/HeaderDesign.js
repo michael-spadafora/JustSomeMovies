@@ -68,26 +68,26 @@ const HeaderDesign = (props) => {
           }
 
           input {
-              float: right;
-              text-decoration: none;
-              font-size: 17px;
-              font-family: Arial;
-              height: 30px;
-              background-color: #f2f2f2;
-              border-radius:5px;
-              padding-left:5px;
+            float: right;
+            text-decoration: none;
+            font-size: 17px;
+            font-family: Arial;
+            height: 30px;
+            background-color: #f2f2f2;
+            border-radius:5px;
+            padding-left:5px;
           }
 
           button {
-              margin-right: 20px;
-              float: right;
-              font-size: 17px;
-              height: 30px;
-              font-family: Arial;
-              background-color:transparent;
-              border-color:transparent;
-              color:white;
-              cursor:pointer;
+            margin-right: 20px;
+            float: right;
+            font-size: 17px;
+            height: 30px;
+            font-family: Arial;
+            background-color:transparent;
+            border-color:transparent;
+            color:white;
+            cursor:pointer;
           }
       `}</style>
     </nav>
