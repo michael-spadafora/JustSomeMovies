@@ -11,7 +11,7 @@ class Movie extends Component {
             movies: [],
             sortBy: props.sortBy
         }
-        console.log('http://localhost:4000/movies/sortby' + this.state.sortBy)
+        // console.log('http://localhost:4000/movies/sortby' + this.state.sortBy)
 
     }
 

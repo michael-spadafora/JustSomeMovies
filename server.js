@@ -77,6 +77,32 @@ app.get('/movies/sortbygenre', (req, res) => {
     });
 });
 
+app.get('/movies/sortbyruntime', (req, res) => {
+    //EDIT THIS
+    con.query('SELECT * FROM movies ORDER BY runtime DESC', (error,results) => {
+        if(error) 
+            return res.send(error);
+        else {
+            return res.json({
+                movies: results
+            })
+        }
+    });
+});
+
+app.get('/movies/sortbybudget', (req, res) => {
+    //EDIT THIS
+    con.query('SELECT * FROM movies ORDER BY budget DESC', (error,results) => {
+        if(error) 
+            return res.send(error);
+        else {
+            return res.json({
+                movies: results
+            })
+        }
+    });
+});
+
 
 
 app.get('/search/p', (req, res) => {
