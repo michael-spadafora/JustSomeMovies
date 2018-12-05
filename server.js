@@ -9,7 +9,7 @@ const app = express();
 var con = mysql.createConnection({
     host: "localhost",
     user: "root",
-    password: "password",
+    password: "root",
     database: "sbudb"
 });
 
@@ -88,17 +88,53 @@ app.get('/sliderImages', (req,res) => {
     });
 });
 
-app.get('/a/:id',function(req,res) {
+app.get('/p/:id',function(req,res) {
     con.query('SELECT *, DATE_FORMAT(dob,"%M %d, %Y") AS dob FROM person WHERE p_id = ?', req.params.id, function(err,results){
         if(err)
             return res.send(err);
         else {
-            con.query('SELECT m.movie_id, m.title, m.poster_url, ai.actor_role FROM movies m INNER JOIN acts_in ai ON m.movie_id = ai.movie_id INNER JOIN person p ON p.p_id = ai.actor_id WHERE p_id = ?;', req.params.id, function(err,results2){
+            con.query('SELECT m.*, ai.actor_role, d.director_id, pr.producer_id FROM person p INNER JOIN acts_in ai ON ai.actor_id = p.p_id INNER JOIN movies m ON m.movie_id = ai.movie_id INNER JOIN directs d ON d.director_id = p.p_id AND d.movie_id = m.movie_id INNER JOIN produces pr ON pr.producer_id = p.p_id AND pr.movie_id = m.movie_id WHERE p.p_id = ?', req.params.id, function(err,results2){
                 if(err)
                     return res.send(err);
                 else { 
-                    return res.json({
-                        actor: results, movies: results2
+                    con.query('SELECT m.*, ai.actor_role, d.director_id FROM person p INNER JOIN acts_in ai ON ai.actor_id = p.p_id INNER JOIN movies m ON m.movie_id = ai.movie_id INNER JOIN directs d ON d.director_id = p.p_id AND d.movie_id = m.movie_id WHERE p.p_id = ? AND NOT EXISTS (SELECT m1.*, ai.actor_role, d.director_id, pr.producer_id FROM person p INNER JOIN acts_in ai ON ai.actor_id = p.p_id INNER JOIN movies m1 ON m1.movie_id = ai.movie_id INNER JOIN directs d ON d.director_id = p.p_id AND d.movie_id = m1.movie_id INNER JOIN produces pr ON pr.producer_id = p.p_id AND pr.movie_id = m1.movie_id WHERE p.p_id = ? AND m1.title=m.title);', [req.params.id,req.params.id], function(err,results3){
+                        if(err)
+                            return res.send(err);
+                        else { 
+                            con.query('SELECT m.*, ai.actor_role, pr.producer_id FROM person p INNER JOIN acts_in ai ON ai.actor_id = p.p_id INNER JOIN movies m ON m.movie_id = ai.movie_id INNER JOIN produces pr ON pr.producer_id = p.p_id AND pr.movie_id = m.movie_id WHERE p.p_id = ? AND NOT EXISTS (SELECT m1.*, ai.actor_role, d.director_id, pr.producer_id FROM person p INNER JOIN acts_in ai ON ai.actor_id = p.p_id INNER JOIN movies m1 ON m1.movie_id = ai.movie_id INNER JOIN directs d ON d.director_id = p.p_id AND d.movie_id = m1.movie_id INNER JOIN produces pr ON pr.producer_id = p.p_id AND pr.movie_id = m1.movie_id WHERE p.p_id = ? AND m1.title=m.title);', [req.params.id,req.params.id], function(err,results4){
+                                if(err)
+                                    return res.send(err);
+                                else { 
+                                    con.query('SELECT m.*, d.director_id, pr.producer_id FROM person p INNER JOIN directs d ON d.director_id = p.p_id INNER JOIN movies m ON m.movie_id = d.movie_id INNER JOIN produces pr ON pr.producer_id = p.p_id AND pr.movie_id = m.movie_id WHERE p.p_id = ? AND NOT EXISTS (SELECT m1.*, ai.actor_role, d.director_id, pr.producer_id FROM person p INNER JOIN acts_in ai ON ai.actor_id = p.p_id INNER JOIN movies m1 ON m1.movie_id = ai.movie_id INNER JOIN directs d ON d.director_id = p.p_id AND d.movie_id = m1.movie_id INNER JOIN produces pr ON pr.producer_id = p.p_id AND pr.movie_id = m1.movie_id WHERE p.p_id = ? AND m1.title=m.title);', [req.params.id,req.params.id], function(err,results5){
+                                        if(err)
+                                            return res.send(err);
+                                        else { 
+                                            con.query('SELECT m.*, ai.actor_role FROM person p INNER JOIN acts_in ai ON ai.actor_id = p.p_id INNER JOIN movies m ON m.movie_id = ai.movie_id WHERE p.p_id = ? AND (NOT EXISTS (SELECT m1.*, ai.actor_role FROM person p INNER JOIN acts_in ai ON ai.actor_id = p.p_id INNER JOIN movies m1 ON m1.movie_id = ai.movie_id INNER JOIN directs d ON d.director_id = p.p_id AND d.movie_id = m1.movie_id WHERE p.p_id = ? AND m1.title=m.title) AND (NOT EXISTS(SELECT m2.*, ai.actor_role FROM person p INNER JOIN acts_in ai ON ai.actor_id = p.p_id INNER JOIN movies m2 ON m2.movie_id = ai.movie_id INNER JOIN produces pr ON pr.producer_id = p.p_id AND pr.movie_id = m2.movie_id WHERE p.p_id = ? AND m2.title=m.title)));', [req.params.id,req.params.id, req.params.id], function(err,results6){
+                                                if(err)
+                                                    return res.send(err);
+                                                else { 
+                                                    con.query('SELECT m.*, d.director_id FROM person p INNER JOIN directs d ON d.director_id = p.p_id INNER JOIN movies m ON m.movie_id = d.movie_id WHERE p.p_id = ? AND (NOT EXISTS (SELECT m1.*, d.director_id FROM person p INNER JOIN directs d ON d.director_id = p.p_id INNER JOIN movies m1 ON m1.movie_id = d.movie_id INNER JOIN produces pr ON pr.producer_id = p.p_id AND d.movie_id = m1.movie_id WHERE p.p_id = ? AND m1.title=m.title) AND (NOT EXISTS(SELECT m2.*, d.director_id FROM person p INNER JOIN directs d ON d.director_id = p.p_id INNER JOIN movies m2 ON m2.movie_id = d.movie_id INNER JOIN acts_in ai ON ai.actor_id = p.p_id AND ai.movie_id = m2.movie_id WHERE p.p_id = ? AND m2.title=m.title)));', [req.params.id,req.params.id, req.params.id], function(err,results7){
+                                                        if(err)
+                                                            return res.send(err);
+                                                        else { 
+                                                            con.query('SELECT m.*, pr.producer_id FROM person p INNER JOIN produces pr ON pr.producer_id = p.p_id INNER JOIN movies m ON m.movie_id = pr.movie_id WHERE p.p_id = ? AND (NOT EXISTS (SELECT m1.*, pr.producer_id FROM person p INNER JOIN produces pr ON pr.producer_id = p.p_id INNER JOIN movies m1 ON m1.movie_id = pr.movie_id INNER JOIN directs d ON d.director_id = p.p_id AND pr.movie_id = m1.movie_id WHERE p.p_id = ? AND m1.title=m.title) AND (NOT EXISTS(SELECT m2.*, pr.producer_id FROM person p INNER JOIN produces pr ON pr.producer_id = p.p_id INNER JOIN movies m2 ON m2.movie_id = pr.movie_id INNER JOIN acts_in ai ON ai.actor_id = p.p_id AND ai.movie_id = m2.movie_id WHERE p.p_id = ? AND m2.title=m.title)));', [req.params.id,req.params.id, req.params.id], function(err,results8){
+                                                                if(err)
+                                                                    return res.send(err);
+                                                                else { 
+                                                                    return res.json({
+                                                                        person: results, all: results2, actDirect: results3, actProduce: results4, directProduce: results5, actor: results6, director: results7, producer: results8
+                                                                    });
+                                                                }
+                                                            });
+                                                        }
+                                                    });
+                                                }
+                                            });
+                                        }
+                                    });
+                                }
+                            });
+                        }
                     });
                 }
             });
@@ -107,7 +143,7 @@ app.get('/a/:id',function(req,res) {
 });
 
 app.get('/m/:id',function(req,res) {
-    con.query('SELECT *, DATE_FORMAT(release_date,"%M %d, %Y") AS release_date FROM movies WHERE movie_id = ?', req.params.id, function(err,results){
+    con.query('SELECT m.*, DATE_FORMAT(release_date,"%M %d, %Y") AS release_date, GROUP_CONCAT(g.genre SEPARATOR ", ") AS genres FROM movies m INNER JOIN movie_genres mg ON m.movie_id=mg.movie_id INNER JOIN genres g ON g.genre_id=mg.genre_id WHERE m.movie_id = ? GROUP BY m.movie_id', req.params.id, function(err,results){
         if(err)
             return res.send(err);
         else {
@@ -131,14 +167,8 @@ app.get('/m/:id',function(req,res) {
                                                 if(err)
                                                     return res.send(err);
                                                 else { 
-                                                    con.query('SELECT GROUP_CONCAT(g.genre SEPARATOR ", ") AS genres FROM movies m INNER JOIN movie_genres mg ON m.movie_id=mg.movie_id INNER JOIN genres g ON g.genre_id=mg.genre_id WHERE m.movie_id = 1 GROUP BY m.movie_id;', req.params.id, function(err,results7){
-                                                        if(err)
-                                                            return res.send(err);
-                                                        else { 
-                                                            return res.json({
-                                                                movie: results, actors: results2, directors: results3, producers: results4, crew: results5, distributors: results6, genres: results7
-                                                            });
-                                                        }
+                                                    return res.json({
+                                                        movie: results, actors: results2, directors: results3, producers: results4, crew: results5, distributors: results6
                                                     });
                                                 }
                                             });

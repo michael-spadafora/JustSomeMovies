@@ -25,7 +25,7 @@ export default class extends Component {
         if(img_url!=null) {
             return (
                 <div key={p_id} className="card">
-                    <Link as={`/a/${p_id}`} href={`/actor?id=${p_id}`}>
+                    <Link as={`/p/${p_id}`} href={`/person?id=${p_id}`}>
                         <div>
                             <div className="cardimg">
                                 <img src={"https://image.tmdb.org/t/p/w500" + img_url} alt={p_name} style={{width:'100%'}}/>
@@ -42,7 +42,7 @@ export default class extends Component {
         else {
             return (
                 <div key={p_id} className="card">
-                    <Link as={`/a/${p_id}`} href={`/actor?id=${p_id}`}>
+                    <Link as={`/p/${p_id}`} href={`/person?id=${p_id}`}>
                         <div>
                             <div className="cardimg">
                                 <img src={"data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs%3D"} alt={p_name} style={{width:'100%'}}/>
@@ -62,7 +62,7 @@ export default class extends Component {
         if(img_url!=null) {
             return (
                 <div key={p_id} className="card">
-                    <Link as={`/a/${p_id}`} href={`/actor?id=${p_id}`}>
+                    <Link as={`/p/${p_id}`} href={`/person?id=${p_id}`}>
                         <div>
                             <div className="cardimg">
                                 <img src={"https://image.tmdb.org/t/p/w500" + img_url} alt={p_name} style={{width:'100%'}}/>
@@ -79,7 +79,7 @@ export default class extends Component {
         else {
             return (
                 <div key={p_id} className="card">
-                    <Link as={`/a/${p_id}`} href={`/actor?id=${p_id}`}>
+                    <Link as={`/p/${p_id}`} href={`/person?id=${p_id}`}>
                         <div>
                             <div className="cardimg">
                                 <img src={"data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs%3D"} alt={p_name} style={{width:'100%'}}/>
@@ -99,7 +99,7 @@ export default class extends Component {
         if(img_url!=null) {
             return (
                 <div key={p_id} className="card">
-                    <Link as={`/a/${p_id}`} href={`/actor?id=${p_id}`}>
+                    <Link as={`/p/${p_id}`} href={`/person?id=${p_id}`}>
                         <div>
                             <div className="cardimg">
                                 <img src={"https://image.tmdb.org/t/p/w500" + img_url} alt={p_name} style={{width:'100%'}}/>
@@ -116,7 +116,7 @@ export default class extends Component {
         else {
             return (
                 <div key={p_id} className="card">
-                    <Link as={`/a/${p_id}`} href={`/actor?id=${p_id}`}>
+                    <Link as={`/p/${p_id}`} href={`/person?id=${p_id}`}>
                         <div>
                             <div className="cardimg">
                                 <img src={"data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs%3D"} alt={p_name} style={{width:'100%'}}/>
@@ -136,7 +136,7 @@ export default class extends Component {
         if(img_url!=null) {
             return (
                 <div key={p_id} className="card">
-                    <Link as={`/a/${p_id}`} href={`/actor?id=${p_id}`}>
+                    <Link as={`/p/${p_id}`} href={`/person?id=${p_id}`}>
                         <div>
                             <div className="cardimg">
                                 <img src={"https://image.tmdb.org/t/p/w500" + img_url} alt={p_name} style={{width:'100%'}}/>
@@ -153,7 +153,7 @@ export default class extends Component {
         else {
             return (
                 <div key={p_id} className="card">
-                    <Link as={`/a/${p_id}`} href={`/actor?id=${p_id}`}>
+                    <Link as={`/p/${p_id}`} href={`/person?id=${p_id}`}>
                         <div>
                             <div className="cardimg">
                                 <img src={"data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs%3D"} alt={p_name} style={{width:'100%'}}/>
@@ -214,7 +214,7 @@ export default class extends Component {
                         <div className="movieDataHeader">Overview</div><div className="movieData">{this.state.movie.movie[0].overview}</div>
                         <div className="movieDataHeader">Release Date</div><div className="movieData">{this.state.movie.movie[0].release_date}</div>
                         <div className="movieDataHeader">Runtime</div><div className="movieData">{this.state.movie.movie[0].runtime}</div>
-                        <div className="movieDataHeader">Genres</div><div className="movieData">{this.state.movie.genres[0].genres}</div>
+                        <div className="movieDataHeader">Genres</div><div className="movieData">{this.state.movie.movie[0].genres}</div>
                         <div className="movieDataHeader">Production Companies</div>
                         <div className="movieData">{this.state.movie.distributors.map(this.renderDistributors)}</div>
                     </div>

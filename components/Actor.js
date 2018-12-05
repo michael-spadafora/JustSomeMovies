@@ -22,7 +22,7 @@ class Actor extends Component {
     renderActors = ({p_id, p_name, img_url}) => {
         if(img_url!=null) {
             return <div key={p_id} className="personBox">
-                <Link as={`/a/${p_id}`} href={`/actor?id=${p_id}`}><img className="image" src={"https://image.tmdb.org/t/p/w500" + img_url} alt={p_name} /></Link>
+                <Link as={`/p/${p_id}`} href={`/person?id=${p_id}`}><img className="image" src={"https://image.tmdb.org/t/p/w500" + img_url} alt={p_name} /></Link>
                 <div className="imgText">{p_name}</div>
             </div>
         }
