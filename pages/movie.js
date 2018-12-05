@@ -1,11 +1,9 @@
 import React, {Component} from 'react';
-<<<<<<< HEAD
-=======
-// import fetch from 'isomorphic-unfetch';
->>>>>>> 1735fe664a31b7c5e27adbfc2baf0aef2988cd0e
 import HeaderLayout from '../components/HeaderLayout';
 import Link from 'next/link';
 import Head from 'next/head';
+import CircularProgressbar from 'react-circular-progressbar';
+import Palette from 'react-palette'
 
 export default class extends Component {
     // get the id from the link and pass it through to database query
@@ -180,7 +178,7 @@ export default class extends Component {
     };
 
     render() {
-        console.log(this.state);
+        const percentage = this.state.movie.movie[0].rating;
         return (
             <div>
                 <Head>
@@ -191,6 +189,23 @@ export default class extends Component {
                 <div className="container">
                     <div className="moviePictureBox">
                         <img src={"https://image.tmdb.org/t/p/w500" + this.state.movie.movie[0].poster_url} alt={this.state.movie.movie[0].p_name} />
+                    </div>
+                    <div className="ratingsBox">
+                        {/* Take the most vibrant color from the image and make it the progress bar color */}
+                        <Palette image={"https://image.tmdb.org/t/p/w500" + this.state.movie.movie[0].poster_url}>
+                            {palette => (
+                                <CircularProgressbar
+                                    percentage={(percentage/10)*100}
+                                    text={percentage}
+                                    initialAnimation={true}
+                                    strokeWidth={10}
+                                    styles={{
+                                    path: { stroke: palette.muted, transition: '1s'},
+                                    text: { fill: 'black', fontSize: '25px', textAnchor: 'middle', x:'50%', y:'50%', alignmentBaseline:'central'}
+                                    }}
+                                />
+                            )}
+                        </Palette>
                     </div>
                     <div className="movieInfo">
                         <div className = "movieTitle">  
@@ -294,6 +309,10 @@ export default class extends Component {
                         display:inline-block;
                         vertical-align:top;
                         margin-right:20px;
+                    }
+                    .ratingsBox {
+                        float:right;
+                        width:75px;
                     }
                 `}</style>
             </div>
