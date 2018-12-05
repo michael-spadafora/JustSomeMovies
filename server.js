@@ -64,6 +64,20 @@ app.get('/movies/sortbyrating', (req, res) => {
     });
 });
 
+app.get('/movies/sortbygenre', (req, res) => {
+    //EDIT THIS
+    con.query('SELECT * FROM movies ORDER BY genre', (error,results) => {
+        if(error) 
+            return res.send(error);
+        else {
+            return res.json({
+                movies: results
+            })
+        }
+    });
+});
+
+
 
 app.get('/search/p', (req, res) => {
     // Takes SQL query and creates a GET method route to send data to /movies path
