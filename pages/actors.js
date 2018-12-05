@@ -5,7 +5,7 @@
 
 import Link from 'next/link'
 import HeaderLayout from '../components/HeaderLayout'
-import SortByMovie from '../components/SortByMovie'
+import SortByActor from '../components/SortByActor'
 import Actor from '../components/Actor'
 import Head from 'next/head';
 
@@ -16,7 +16,10 @@ const actors = (props) => (
             <link href="https://fonts.googleapis.com/css?family=Nunito:900:300" rel="stylesheet"/>
         </Head>
         <HeaderLayout head/>
-        <div style={{display:"inline-block",fontSize:"23pt",fontWeight:"bold",paddingLeft:"10px",marginTop:"10px"}}>Actors</div><div style={{marginTop:"10px",float:"right"}}><SortByMovie /></div>
+        <div style={{display:"inline-block",fontSize:"23pt",fontWeight:"bold",paddingLeft:"10px",marginTop:"10px"}}>
+            Actors
+        </div>
+        <div style={{marginTop:"10px",float:"right"}}> <SortByActor /> </div>
         <Actor />
         <style jsx>{`
             body{

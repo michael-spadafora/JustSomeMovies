@@ -64,6 +64,18 @@ app.get('/search/m', (req, res) => {
     });
 });
 
+
+app.get('/actors/sortbyname', (req, res) => {
+    con.query('SELECT * FROM person p INNER JOIN actors a ON p.p_id = a.actor_id ORDER BY p.p_name', (error,results) => {
+        if(error) 
+            return res.send(error);
+        else {
+            return res.json({
+                actors: results
+            })
+        }
+    });
+});
 app.get('/actors', (req, res) => {
     con.query('SELECT * FROM person p INNER JOIN actors a ON p.p_id = a.actor_id', (error,results) => {
         if(error) 
@@ -73,7 +85,7 @@ app.get('/actors', (req, res) => {
                 actors: results
             })
         }
-    });
+    }); 
 });
 
 app.get('/sliderImages', (req,res) => {
