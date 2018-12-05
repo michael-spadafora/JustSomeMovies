@@ -105,12 +105,18 @@ class App extends Component {
 
         return (
             <div>
+                <span> <font size = '10'> 
+                {this.state.type.charAt(0).toUpperCase()+this.state.type.slice(1) + "s"}
+                </font> </span>
                 <ReactTable
                     data={this.state.data}
                     columns={col}
                     defaultPageSize={3}
                     pageSizeOptions={[3, 6]}
                 />
+                <br></br>
+            
+
             </div>
         )
 

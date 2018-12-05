@@ -34,7 +34,7 @@ class SortByActor extends Component {
                     this.state.showMenu ? (
                         <div id="myDropdown" className="dropdownContent">
                             {this.state.data.map(d => 
-                            <a href = {'/actorsCopy?sortBy=' + d.item} >
+                            <a href = {'/actors?sortBy=' + d.item} >
                                 <div className="dropdownItem">{d.item}</div>
                             </a>
                             )}

@@ -76,8 +76,21 @@ app.get('/actors/sortbyname', (req, res) => {
         }
     });
 });
+
 app.get('/actors', (req, res) => {
     con.query('SELECT * FROM person p INNER JOIN actors a ON p.p_id = a.actor_id', (error,results) => {
+        if(error) 
+            return res.send(error);
+        else {
+            return res.json({
+                actors: results
+            })
+        }
+    }); 
+});
+
+app.get('/directors', (req, res) => {
+    con.query('SELECT * FROM person p INNER JOIN directors a ON p.p_id = a.director_id', (error,results) => {
         if(error) 
             return res.send(error);
         else {

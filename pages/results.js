@@ -27,7 +27,7 @@ export default class extends Component {
                 <HeaderLayout head/>
                 <Table  type = {'movie'} query = {this.state.data}/>   
                 <Table  type = {'actor'} query = {this.state.data} />    
-                <Table  type = {'director'} query = {this.state.data}/>    
+                {/* <Table  type = {'director'} query = {this.state.data}/>  */}
             </div>
         )
     }
