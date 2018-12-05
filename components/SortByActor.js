@@ -5,7 +5,7 @@ class SortByActor extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            data: [{"item":"name"},{"item":"title"},{"item":"rating"}],
+            data: [{"item":"name"},{"item":"id"},{"item":"dob"}],
             showMenu: false 
         };
         this.showMenu = this.showMenu.bind(this);
