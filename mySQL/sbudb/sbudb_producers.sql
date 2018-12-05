@@ -26,7 +26,7 @@ CREATE TABLE `producers` (
   `producer_id` int(11) NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`producer_id`),
   CONSTRAINT `producers_ibfk_1` FOREIGN KEY (`producer_id`) REFERENCES `person` (`p_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=13844 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=13723 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -48,4 +48,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-12-03 22:25:52
+-- Dump completed on 2018-12-05 18:34:18

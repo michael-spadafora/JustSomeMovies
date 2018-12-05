@@ -26,7 +26,7 @@ CREATE TABLE `directors` (
   `director_id` int(11) NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`director_id`),
   CONSTRAINT `directors_ibfk_1` FOREIGN KEY (`director_id`) REFERENCES `person` (`p_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=13583 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=13573 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -48,4 +48,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-12-03 22:25:55
+-- Dump completed on 2018-12-05 18:34:20
