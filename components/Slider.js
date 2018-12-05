@@ -102,8 +102,8 @@ export default class Slider extends Component {
             display: 'flex',
           }}>
             {
-              this.state.images.map(({backdrop_url}, i) => (
-                <Slide key={i} image={"https://image.tmdb.org/t/p/w780" + backdrop_url} />
+              this.state.images.map(({backdrop_url, title, movie_id}, i) => (
+                <Slide key={i} image={"https://image.tmdb.org/t/p/w780" + backdrop_url} title={title} movie_id={movie_id} />
               ))
             }
         </div>
