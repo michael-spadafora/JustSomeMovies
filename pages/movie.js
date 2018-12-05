@@ -167,7 +167,7 @@ export default class extends Component {
             )
         }
     };
-
+ 
     renderDistributors = ({dist_name,dist_id}) => {
         return (
             <div key={dist_id} className="movieCompanies">

@@ -34,6 +34,21 @@ app.get('/movies', (req, res) => {
     });
 });
 
+app.get('/movies/sortbytitle', (req, res) => {
+    // Takes SQL query and creates a GET method route to send data to /movies path
+    // Once client calls for data from /movies the results of the query is sent
+    // Can be changed to reference specific searches 
+    con.query('SELECT * FROM movies ORDER BY title', (error,results) => {
+        if(error) 
+            return res.send(error);
+        else {
+            return res.json({
+                movies: results
+            })
+        }
+    });
+});
+
 app.get('/search/p', (req, res) => {
     // Takes SQL query and creates a GET method route to send data to /movies path
     // Once client calls for data from /movies the results of the query is sent

@@ -33,7 +33,13 @@ class SortByMovie extends Component {
                 {
                     this.state.showMenu ? (
                         <div id="myDropdown" className="dropdownContent">
-                            {this.state.data.map(d => <div className="dropdownItem">{d.item}</div>)}
+                            {this.state.data.map(d => 
+                                <a href = {'/movies?sortBy=' + d.item} >
+                                    <div className="dropdownItem">{d.item}</div>
+                                </a>
+                                )
+                            }
+                            
                         </div>
                     ): (null)
                 }
