@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import Head from 'next/head';
 
 library.add(faSearch);
 
@@ -107,7 +108,11 @@ class App extends Component {
         }
 
         return (
-            <div>
+            <div className="container">
+                <Head>
+                    <title>Just Some Movies</title>
+                    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet"/>
+                </Head>
                 <span> <font size = '10'> 
                 {this.state.type.charAt(0).toUpperCase()+this.state.type.slice(1) + "s"}
                 </font> </span>
@@ -122,6 +127,9 @@ class App extends Component {
                     .searchButtonIcon {
                         cursor:pointer;
                         text-align:center;
+                    }
+                    .container {
+                        font-family:Nunito;
                     }
                 `}</style>
 
