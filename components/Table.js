@@ -2,15 +2,18 @@ import React, { Component } from 'react';
 import ReactTable from "react-table";
 import "react-table/react-table.css";
 import Link from 'next/link'
-import { O_WRONLY } from 'constants';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
+library.add(faSearch);
 
 const fetch = require("node-fetch");
 
 const moviesColumns = [{
     Header: 'Link',
     accessor: 'movie_id',
-    Cell: (row) => (<Link as =  {"/m/" + row.value} href={`/movie?id=` + row.value} width='10px'> View Page  </Link>),
+    Cell: (row) => (<Link as =  {"/m/" + row.value} href={`/movie?id=` + row.value} width='10px'><div className="searchButtonIcon"><FontAwesomeIcon icon="search" /></div></Link>),
     maxWidth: 100 
 },{
     Header: 'Name',
@@ -32,7 +35,7 @@ const moviesColumns = [{
 const actorsColumns = [{
     Header: 'Link',
     accessor: 'p_id',
-    Cell: (row) => (<Link as =  {"/p/" + row.value} href={`/person?id=` + row.value} width='10px'> View Page  </Link>),
+    Cell: (row) => (<Link as =  {"/p/" + row.value} href={`/person?id=` + row.value} width='10px'><div className="searchButtonIcon"><FontAwesomeIcon icon="search" /></div></Link>),
     maxWidth: 100 
     }, {
     Header: 'Name',
@@ -115,7 +118,12 @@ class App extends Component {
                     pageSizeOptions={[3, 6]}
                 />
                 <br></br>
-            
+                <style jsx global>{`
+                    .searchButtonIcon {
+                        cursor:pointer;
+                        text-align:center;
+                    }
+                `}</style>
 
             </div>
         )
