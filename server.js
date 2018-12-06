@@ -124,7 +124,7 @@ app.get('/search/m', (req, res) => {
     // Takes SQL query and creates a GET method route to send data to /movies path
     // Once client calls for data from /movies the results of the query is sent
     // Can be changed to reference specific searches 
-    con.query('SELECT * FROM movies WHERE title LIKE ?', '%' + req.query.query + '%', (error,results) => {
+    con.query('SELECT m.*,GROUP_CONCAT(g.genre SEPARATOR ", ") AS genres FROM movies m INNER JOIN movie_genres mg ON mg.movie_id = m.movie_id INNER JOIN genres g ON mg.genre_id=g.genre_id WHERE title LIKE ? GROUP BY movie_id', '%' + req.query.query + '%', (error,results) => {
         if(error) 
             return res.send(error);
         else {

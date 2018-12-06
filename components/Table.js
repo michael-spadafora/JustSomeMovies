@@ -23,12 +23,6 @@ const moviesColumns = [{
     Header: 'Genres',
     accessor: 'genres'
   }, {
-    Header: 'Director',
-    accessor: 'director'
-  }, {
-    Header: 'Actors',
-    accessor: 'actors'
-  }, {
       Header: 'Rating',
       accessor: 'rating'
   }]
