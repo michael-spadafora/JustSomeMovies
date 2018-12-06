@@ -64,19 +64,6 @@ app.get('/movies/sortbyrating', (req, res) => {
     });
 });
 
-app.get('/movies/sortbygenre', (req, res) => {
-    //EDIT THIS
-    con.query('SELECT * FROM movies ORDER BY genre', (error,results) => {
-        if(error) 
-            return res.send(error);
-        else {
-            return res.json({
-                movies: results
-            })
-        }
-    });
-});
-
 app.get('/movies/sortbyruntime', (req, res) => {
     //EDIT THIS
     con.query('SELECT * FROM movies ORDER BY runtime DESC', (error,results) => {

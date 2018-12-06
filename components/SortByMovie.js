@@ -5,7 +5,7 @@ class SortByMovie extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            data: [{"item":"genre"},{"item":"title"},{"item":"rating"}, {"item":"budget"} , {'item' : 'runtime'}],
+            data: [{"item":"title"},{"item":"rating"}, {"item":"budget"} , {'item' : 'runtime'}],
             showMenu: false
         };
         this.showMenu = this.showMenu.bind(this);
