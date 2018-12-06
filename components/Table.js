@@ -32,7 +32,7 @@ const moviesColumns = [{
 const actorsColumns = [{
     Header: 'Link',
     accessor: 'p_id',
-    Cell: (row) => (<Link as =  {"/a/" + row.value} href={`/actor?id=` + row.value} width='10px'> View Page  </Link>),
+    Cell: (row) => (<Link as =  {"/p/" + row.value} href={`/person?id=` + row.value} width='10px'> View Page  </Link>),
     maxWidth: 100 
     }, {
     Header: 'Name',
