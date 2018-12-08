@@ -104,7 +104,7 @@ class App extends Component {
         return (
             <div className="container">
                 <Head>
-                    <title>Just Some Movies</title>
+                    <title>Search Results</title>
                     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet"/>
                 </Head>
                 <span> <font size = '10'> 

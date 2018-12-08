@@ -19,7 +19,7 @@ const HeaderDesign = (props) => {
   return (
      <nav className="mainHead">
         <ul className="navbar-nav">
-            <Link href="/"><a><img src="https://i.ibb.co/LtLp5Ww/logo.png" alt="logo" border="0" style={iconStyle}/> </a></Link>
+            <Link href="/"><a><img src="/static/logo.png" alt="logo" border="0" style={iconStyle}/> </a></Link>
             {/* <Link href="/"><a className="nav-link">JSM</a></Link> */}
             {/* assuming we dont need the above since our logo is now usable */}
             <Link href="/movies"><a className="nav-link">Movies</a></Link>
