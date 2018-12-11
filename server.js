@@ -292,7 +292,10 @@ app.get('/m/:id',function(req,res) {
     });
 });
 
-app.listen(4000, () => {
+const port=process.env.PORT || 4000
+
+
+app.listen(port, () => {
     // Waits for a request from client 
     console.log('Go to localhost:4000/');
 });
