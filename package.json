@@ -2,7 +2,7 @@
     "scripts": {
         "dev": "next",
         "build": "next build",
-        "start": "NODE_ENV=production server.js",
+        "start": "node server.js",
         "prestart": "next build",
         "postinstall": "next build"
 
