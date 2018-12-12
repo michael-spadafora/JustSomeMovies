@@ -3,7 +3,9 @@
         "dev": "next",
         "build": "next build",
         "start": "next start",
-        "prestart": "next build"
+        "prestart": "next build",
+        "postinstall": "next build"
+
     },
     "dependencies": {
         "@fortawesome/fontawesome-svg-core": "^1.2.8",
